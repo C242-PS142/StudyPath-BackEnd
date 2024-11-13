@@ -1,6 +1,7 @@
 const express = require('express'),
-mainRouter = express()
+mainRouter = express(),
+quiz = require('./quiz')
 
-mainRouter.use('/')
+mainRouter.use('/api', quiz);
 
 module.exports = mainRouter
