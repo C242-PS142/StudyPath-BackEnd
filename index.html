@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login with Google</title>
+</head>
+<body>
+  <h1>Login with Google</h1>
+  <button id="google-login">Login with Google</button>
+
+  <script type="module">
+    // Impor Firebase SDK menggunakan ES Modules
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js';
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js';
+
+    // Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyD5eqpbFpwYUkUhhSydOk5CfCz2_x-cwSA",
+      authDomain: "studypath-77cd1.firebaseapp.com",
+      projectId: "studypath-77cd1",
+      storageBucket: "studypath-77cd1.firebasestorage.app",
+      messagingSenderId: "202391062136",
+      appId: "1:202391062136:web:c5602651a56064528fcf8d",
+    };
+
+    // Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    // Login dengan Google
+    document.getElementById('google-login').addEventListener('click', () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log('Login successful:', user);
+          alert(`Welcome, ${user.displayName}`);
+        })
+        .catch((error) => {
+          console.error('Error during login:', error);
+        });
+    });
+  </script>
+</body>
+</html>

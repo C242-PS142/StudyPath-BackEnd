@@ -1,11 +1,11 @@
-const { getAll, submit } = require('../models/quiz.model');
+const { getAll, submit } = require('../models/quizModel');
 
 exports.getAll = function(req, res, next) {
     getAll(function(err, result) {
         if (err) {
             res.status(500).json({ status: 'fail', message: 'Error while retrieving data from database' });
         } else {
-            res.status(200).json({status: 'success', data: { quiz: result } });
+            res.status(200).json({status: 'success', message: 'Quiz fetched successfully', data: { quiz: result } });
         }
     });
 }
@@ -27,7 +27,7 @@ exports.answers = function(req, res, next) {
             res.status(500).json({ status: 'fail', message: err});
         } else {
             if (result['affectedRows'] === 50) {
-                res.status(201).json({status: 'success', data: {id: result.insertId, ...values}})
+                res.status(201).json({status: 'success', message: "Successfully to answer quiz", data: {id: result.insertId}})
             } else {
                 res.status(404).json({status: 'fail', message: "Failed to answer quiz"})
             }
