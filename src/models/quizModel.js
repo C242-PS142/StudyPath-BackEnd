@@ -1,4 +1,4 @@
-const db = require('../config/db.config');
+const db = require('../config/dbConfig');
 
 exports.getAll = function(callback) {
     let sql = 'SELECT * FROM `questions`';
