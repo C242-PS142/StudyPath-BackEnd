@@ -51,14 +51,12 @@ npm install
 Buat file `.env` di root folder dan tambahkan konfigurasi environment sesuai kebutuhan. Contoh:
 ```bash
 PORT=3000
-NODE_ENV=development
 
 //Konfigurasi Database
-DB_HOST=localhost
+DB_HOST=34.101.51.9
 DB_USER=root
 DB_PASSWORD=
 DB_NAME=studypath
-DB_PORT=3306
 ```
 
 ### 5. Menjalankan Server
@@ -86,16 +84,20 @@ Ganti `<PORT>` dengan nilai yang sudah ditentukan di file `.env` (default: 3000)
 # 📂 Struktur Proyek
 Berikut adalah struktur direktori proyek:
 ```bash
+├── publci              # Folder for static files that can be accessed by clients
 ├── src
-│   ├── routes          # API route definitions
+│   ├── config          # Application configuration, including database connections and other settings
 │   ├── controllers     # Logic for handling requests
+│   ├── middleware      # Custom middleware for processing requests
 │   ├── models          # Database models
-│   ├── middleware      # Custom middleware
-│   ├── utils           # Utility functions
-│   └── app.js          # Main application file
+│   ├── routes          # API route definitions
+│   ├── services        # Services for complex business logic
+│   └── utils           # Utility functions
 ├── .env                # Environment configuration
+├── app.js              # Main application file
+├── Dockerfile          # File Docker untuk membuat container aplikasi
 ├── package.json        # Project metadata and dependencies
-├── README.md           # Project documentation
+├── README.md           # Project documentation, instructions for use, and other information
 └── server.js           # Entry point of the server
 ```
 
@@ -103,7 +105,6 @@ Berikut adalah struktur direktori proyek:
 * npm install: Install semua dependensi proyek.
 * npm run dev: Menjalankan server dalam mode pengembangan.
 * npm start: Menjalankan server dalam mode produksi.
-* npm test: Menjalankan pengujian (opsional, jika pengujian tersedia).
 
 # 🛠️ Troubleshooting
 Jika menemukan error, pastikan:
@@ -194,16 +195,16 @@ The request body contains an array of answers. Each answer includes the `questio
 **Response Body**:
 ```json
 {
-    "status": "error",
-    "message": "Invalid input"
+    "status": "fail",
+    "message": "Failed to answer quiz"
 }
 ```
 **Status Code**: `401 Unauthorized`
 **Response Body**:
 ```json
 {
-    "status": "error",
-    "message": "Unauthorized"
+    "status": "fail",
+    "message": "Unauthorized: Invalid Access Token"
 }
 ```
 
@@ -252,18 +253,11 @@ The request body contains an array of answers. Each answer includes the `questio
 **Response Body**:
 ```json
 {
-    "status": "error",
-    "message": "Invalid input"
+    "status": "fail",
+    "message": "No Access Token provided"
 }
 ```
-**Status Code**: `401 Unauthorized`
-**Response Body**:
-```json
-{
-    "status": "error",
-    "message": "Unauthorized: Invalid ID Token"
-}
-```
+
 ## Me
 
 ### URL
@@ -300,5 +294,14 @@ The request body contains an array of answers. Each answer includes the `questio
             "uid": "hqil0iLnndRef76cPQWQsL8enrD2"
         }
     }
+}
+```
+#### Error Response
+**Status Code**: `401 Unauthorized`
+**Response Body**:
+```json
+{
+    "status": "fail",
+    "message": "Unauthorized: Invalid Access Token"
 }
 ```

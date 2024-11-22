@@ -1,27 +1,44 @@
-const admin = require('../config/firebase');
+const admin = require("../config/firebase");
 
-exports.me = function(req, res, next){
-  res.status(200).json({status: 'success', message: 'User fetched successfully', data: { user: req.user } });
-}
+// Fungsi untuk endpoint 'me' yang mengembalikan informasi pengguna saat ini
+exports.me = function (req, res, next) {
+  res
+    .status(200)
+    .json({
+      status: "success",
+      message: "User fetched successfully",
+      data: { user: req.user },
+    });
+};
 
-exports.login = async function(req, res, next) {
-  const { idToken } = req.body;
+// Fungsi untuk endpoint 'login' yang menangani autentikasi pengguna
+exports.login = async function (req, res, next) {
+  const { accessToken } = req.body;
 
-  if (!idToken) {
-    return res.status(400).json({ error: 'Bad Request: No ID Token provided' });
+  // Memeriksa apakah accessToken disediakan
+  if (!accessToken) {
+    return res
+      .status(400)
+      .json({
+        status: "fail",
+        message: "No Access Token provided",
+      });
   }
 
   try {
     // Verifikasi token dan ambil data pengguna
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const decodedToken = await admin.auth().verifyIdToken(accessToken);
     const { uid, email, picture, name } = decodedToken;
 
     // Kirim data pengguna ke klien
     return res.status(200).json({
-      message: 'Login successful',
+      status: "success",
+      message: "Login successful",
       data: { uid, name, email, picture },
     });
   } catch (error) {
-    return res.status(401).json({ error: 'Unauthorized: Invalid ID Token' });
+    return res
+      .status(401)
+      .json({ status: "fail", message: "Unauthorized: Invalid Access Token" });
   }
-}
+};

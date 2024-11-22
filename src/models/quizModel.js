@@ -1,7 +1,10 @@
-const db = require('../config/dbConfig');
+const db = require('../config/cloudSQL');
 
+// Fungsi untuk mengambil semua pertanyaan dari tabel 'questions'
 exports.getAll = function(callback) {
     let sql = 'SELECT * FROM `questions`';
+    
+    // Mengeksekusi query ke database
     db.query(sql, (err, result) => {
         if (err) {
             callback(err, null);  // Mengirimkan error ke callback
@@ -11,9 +14,12 @@ exports.getAll = function(callback) {
     });
 }
 
+// Fungsi untuk menyimpan jawaban pengguna ke dalam tabel 'Answers'
 exports.submit = function(data, callback) {
     const value = data;
     let sql = 'INSERT INTO Answers (question_code, user_id, answer_value) VALUES ?';
+    
+    // Mengeksekusi query insert dengan data yang diberikan
     db.query(sql, [value], (err, result) => {
         if (err) {
             callback(err, null); // Mengirimkan error ke callback

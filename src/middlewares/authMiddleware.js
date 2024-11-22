@@ -1,21 +1,30 @@
-const admin = require('../config/firebase');
+const admin = require("../config/firebase");
 
+// Middleware untuk autentikasi pengguna menggunakan token Firebase
 const authMiddleware = async (req, res, next) => {
   const authorization = req.headers.authorization;
 
-  if (!authorization || !authorization.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Unauthorized: No token provided' });
+  // Memeriksa apakah token ada dan diawali dengan 'Bearer'
+  if (!authorization || !authorization.startsWith("Bearer ")) {
+    return res
+      .status(401)
+      .json({
+        status: "fail",
+        message: "Unauthorized: No Access Token provided",
+      });
   }
 
-  const idToken = authorization.split('Bearer ')[1];
+  const idToken = authorization.split("Bearer ")[1];
 
   try {
-    // Verifikasi token dengan Firebase Admin SDK
+    // Memverifikasi token menggunakan Firebase Admin SDK
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-    req.user = decodedToken; // Menyimpan data pengguna di req.user
+    req.user = decodedToken;
     next();
   } catch (error) {
-    return res.status(401).json({ error: 'Unauthorized: Invalid token' });
+    return res
+      .status(401)
+      .json({ status: "fail", message: "Unauthorized: Invalid Access Token" });
   }
 };
 
