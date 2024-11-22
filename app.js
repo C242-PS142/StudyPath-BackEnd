@@ -11,10 +11,13 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const authMiddleware = require('./src/middlewares/authMiddleware');
-app.get('/api/protected', authMiddleware, (req, res) => {
-    res.json({ message: `Hello, ${req.user.email}!`, user: req.user });
-  });
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+
 
 const mainRouter = require('./src/routes')
 

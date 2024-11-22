@@ -43,7 +43,8 @@ CREATE TABLE `answers` (
 
 CREATE TABLE `questions` (
   `question_code` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `question_text` text COLLATE utf8mb4_general_ci NOT NULL
+  `question_text_en` text COLLATE utf8mb4_general_ci NOT NULL
+  `question_text_id` text COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

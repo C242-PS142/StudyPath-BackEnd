@@ -2,18 +2,19 @@ const mysql = require('mysql2');
 
 // Konfigurasi koneksi Cloud SQL dengan socket
 const db = mysql.createConnection({
-  socketPath: `/cloudsql/YOUR_PROJECT_ID:YOUR_REGION:YOUR_INSTANCE_ID`, // Gantilah dengan connection name Cloud SQL
-  user: 'YOUR_DB_USER',
-  password: 'YOUR_DB_PASSWORD',
-  database: 'YOUR_DB_NAME',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
+// Membuka koneksi ke database dan menangani error jika koneksi gagal
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err);
-    return;
+  } else {
+    console.log('Connected to the Cloud SQL database!');
   }
-  console.log('Connected to the Cloud SQL database!');
 });
 
 module.exports = db;
