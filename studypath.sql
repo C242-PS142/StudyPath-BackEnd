@@ -121,7 +121,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `created_at`) VALUES
+INSERT INTO `users` (`id`, `name`, `email`, `created_at`) VALUES
 (1, 'John Doe', 'johndoe@gmail.com', '2024-11-13 14:17:32');
 
 --
