@@ -1,4 +1,7 @@
-const { getAll, submit } = require("../models/quizModel");
+const { getAll, submit } = require("../models/quizModel"),
+{predict} = require('../services/mlService'),
+{generateText} = require('../services/textGenerationService');
+
 
 // Fungsi untuk mengambil semua data kuis dari database
 exports.getAll = function (req, res, next) {
@@ -35,8 +38,12 @@ exports.answers = function (req, res, next) {
   // Memproses jawaban menjadi array dua dimensi untuk disimpan di database
   const values = answers.map((answer) => [
     answer.question_code,
+    1,
     answer.answer_value,
   ]);
+
+  const ml = values.map(item => item[2]);
+
 
   // Memanggil fungsi submit dari quizModel untuk menyimpan jawaban ke database
   submit(values, function (err, result) {
@@ -45,13 +52,19 @@ exports.answers = function (req, res, next) {
     } else {
       // Memeriksa apakah jumlah baris yang dipengaruhi sesuai harapan (misalnya 50 jawaban)
       if (result["affectedRows"] === 50) {
-        res
-          .status(201)
-          .json({
-            status: "success",
-            message: "Successfully to answer quiz",
-            data: { id: result.insertId },
-          });
+        predict(ml, function(errr, result1) {
+          if (err) {
+            res.status(500).json({ status: "fail", message: errr})
+          } else {
+            generateText(result1.prediction, function(err, result2) {
+              if (err) {
+                  res.status(500).json({ status: "fail", message: err });
+              } else {
+                  res.status(200).json({ status: "success", message: "Prediction from ML server and Generative AI successfully", data: {prediction: result1.prediction, text: result2}})
+              }
+            })
+          }
+        })
       } else {
         res
           .status(404)
