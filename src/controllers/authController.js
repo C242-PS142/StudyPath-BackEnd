@@ -1,4 +1,5 @@
-const admin = require("../config/firebase");
+const admin = require("../config/firebase"),
+{ register } = require('../models/authModel');
 
 // Fungsi untuk endpoint 'me' yang mengembalikan informasi pengguna saat ini
 exports.me = function (req, res, next) {
@@ -42,3 +43,26 @@ exports.login = async function (req, res, next) {
       .json({ status: "fail", message: "Unauthorized: Invalid Access Token" });
   }
 };
+
+exports.register = function(req, res, next){
+  const id = req.body.id
+  const name = req.body.name
+  const email = req.body.email
+  const age = req.body.age
+  var imageUrl = ''
+
+  if (req.file && req.file.cloudStoragePublicUrl) {
+      imageUrl = req.file.cloudStoragePublicUrl
+  }
+  register([id, name, email, age, imageUrl], function(err, result){
+    if (err) {
+      res.status(500).json({ status: "fail", message: err});
+    } else {
+      if (result["affectedRows"] === 1) {
+      res.status(201).json({ status: "success", message: "Berhasil membuat akun", data : {user: {...req.body, avatar: imageUrl}}});
+      } else {
+      res.status(400).json({ status: "fail", message: err});
+      }
+    }
+  })
+}
