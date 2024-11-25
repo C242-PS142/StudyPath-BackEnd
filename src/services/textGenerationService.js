@@ -27,6 +27,7 @@ KESTABILAN EMOSI: ${Neuroticism}%
 KETERBUKAAN SOSIAL, ENERGI DAN ANTUSIASME: ${Extroversion}%
 KETELITIAN: ${Conscientiousness}%
 KESEPAKATAN: ${Agreeableness}%
+Berikan response dalam bentuk json object dengan key sesuai dengan Big V
 `;
     const genAI = new GoogleGenerativeAI(process.env.API_KEY);
     try {

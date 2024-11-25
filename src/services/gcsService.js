@@ -1,7 +1,7 @@
     'use strict'
 const {Storage} = require('@google-cloud/storage')
 const fs = require('fs')
-// const dateFormat = require('dateformat')
+const dateFormat = require('dateformat')
 const path = require('path');
 
 const pathKey = path.resolve('./gcs-service-account.json')
@@ -25,8 +25,7 @@ let ImgUpload = {}
 ImgUpload.uploadToGcs = (req, res, next) => {
     if (!req.file) return next()
 
-    const gcsname = req.file.originalname
-    // const gcsname = dateFormat(new Date(), "yyyymmdd-HHMMss")
+    const gcsname = `${req.file.originalname}_${dateFormat(new Date(), "yyyymmdd-HHMMss")}`
     const file = bucket.file(gcsname)
 
     const stream = file.createWriteStream({

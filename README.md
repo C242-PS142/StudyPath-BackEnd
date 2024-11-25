@@ -3,22 +3,24 @@
 
 # Table of Contents
 - [Node.js Backend Documentation](#nodejs-backend-documentation)
-  - [Prerequisites](#-prerequisites)
-  - [Cara Menggunakan](#-cara-menggunakan)
+  - [Prerequisites](#📋-prerequisites)
+  - [Cara Menggunakan](#🚀-cara-menggunakan)
     - [Clone Repository](#1-clone-repository)
     - [Masuk ke Direktori Proyek](#2-masuk-ke-direktori-proyek)
     - [Install Dependencies](#3-install-dependencies)
     - [Konfigurasi Environment Variables](#4-konfigurasi-environment-variables)
-    - [Menjalankan Server](#5-menjalankan-server)
-    - [Akses Aplikasi](#6-akses-aplikasi)
-  - [Struktur Proyek](#-prerequisites)
-  - [Scripts yang Tersedia](#-prerequisites)
-  - [Troubleshooting](#-prerequisites)
+    - [Import Database](#5-import-database)
+    - [Menjalankan Server](#6-menjalankan-server)
+    - [Akses Aplikasi](#7-akses-aplikasi)
+  - [Struktur Proyek](#📂-struktur-proyek)
+  - [Scripts yang Tersedia](#✨-scripts-yang-tersedia)
+  - [Troubleshooting](#️🛠️-troubleshooting)
 - [API Documentation](#api-documentation)
   - [All Quiz](#get-all-quiz)
   - [Answer Quiz](#post-answer-quiz)
   - [Login](#login)
   - [Me](#me)
+  - [Register](#register)
 
 # Node.js Backend Documentation
 
@@ -66,10 +68,16 @@ ML_API_URL=http://127.0.0.1:5000/predict
 
 PROJECT_ID=
 GCS_BUCKET_NAME=study-path-bucket
-
 ```
 
-### 5. Menjalankan Server
+### 5. Import Database
+Setelah konfigurasi environment, Anda perlu mengimpor struktur database yang diperlukan. Anda dapat menggunakan file dump atau skrip SQL untuk membuat dan mengisi database sesuai dengan kebutuhan aplikasi.
+Contoh perintah untuk mengimpor file dump SQL (misalnya `studypath.sql`):
+```bash
+mysql -u root -p studypath < studypath.sql
+```
+
+### 6. Menjalankan Server
 Untuk Pengembangan
 Jalankan server dalam mode pengembangan:
 ```bash
@@ -84,7 +92,7 @@ Jalankan server dalam mode produksi:
 npm run start
 ```
 
-### 6. Akses Aplikasi
+### 7. Akses Aplikasi
 Akses aplikasi Anda melalui browser atau aplikasi API client (seperti Postman) menggunakan URL:
 ```bash
 http://localhost:<PORT>
@@ -328,7 +336,7 @@ The request body contains an array of answers. Each answer includes the `questio
 }
 ```
 
-## Me
+## Register
 
 ### URL
 `/auth/register`

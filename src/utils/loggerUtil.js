@@ -7,8 +7,8 @@ exports.logRequest = function (req) {
 
 exports.logError = function (error) {
   const currentDate = new Date().toISOString();
-  console.error(`[${currentDate}] ERROR: ${error.message}`);
-  console.error(error.stack);
+  console.error(`[${currentDate}] ERROR: ${error}`);
+  console.error(error);
 };
 
 exports.logRequestToFile = function (req) {

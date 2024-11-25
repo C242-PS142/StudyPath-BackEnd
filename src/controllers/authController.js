@@ -52,12 +52,13 @@ exports.register = function(req, res, next){
   const name = sanitizeString(req.body.name)
   const email = sanitizeString(req.body.email)
   const date_birth = sanitizeString(req.body.date_birth)
+  const gender = sanitizeString(req.body.gender)
   var imageUrl = ''
 
   if (req.file && req.file.cloudStoragePublicUrl) {
       imageUrl = req.file.cloudStoragePublicUrl
   }
-  register([id, name, email, date_birth, imageUrl], function(err, result){
+  register([id, name, email, date_birth, gender, imageUrl], function(err, result){
     if (err) {
       logError(err)
       res.status(500).json({ status: "fail", message: "Internal Server Error"});
