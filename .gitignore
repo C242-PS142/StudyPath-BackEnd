@@ -132,5 +132,4 @@ dist
 gcf-service-account.json
 gcs-service-account.json
 .vscode
-studypath.sql
 server.log
