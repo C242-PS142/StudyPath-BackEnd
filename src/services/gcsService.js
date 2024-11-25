@@ -1,7 +1,7 @@
     'use strict'
 const {Storage} = require('@google-cloud/storage')
 const fs = require('fs')
-const dateFormat = require('dateformat')
+// const dateFormat = require('dateformat')
 const path = require('path');
 
 const pathKey = path.resolve('./gcs-service-account.json')

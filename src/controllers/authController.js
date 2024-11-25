@@ -1,5 +1,7 @@
 const admin = require("../config/firebase"),
 { register } = require('../models/authModel');
+const { logError } = require("../utils/loggerUtil");
+const { sanitizeString } = require("../utils/sanitizeUtil");
 
 // Fungsi untuk endpoint 'me' yang mengembalikan informasi pengguna saat ini
 exports.me = function (req, res, next) {
@@ -38,6 +40,7 @@ exports.login = async function (req, res, next) {
       data: { uid, name, email, picture },
     });
   } catch (error) {
+    logError(error);
     return res
       .status(401)
       .json({ status: "fail", message: "Unauthorized: Invalid Access Token" });
@@ -45,23 +48,24 @@ exports.login = async function (req, res, next) {
 };
 
 exports.register = function(req, res, next){
-  const id = req.body.id
-  const name = req.body.name
-  const email = req.body.email
-  const age = req.body.age
+  const id = sanitizeString(req.body.id)
+  const name = sanitizeString(req.body.name)
+  const email = sanitizeString(req.body.email)
+  const date_birth = sanitizeString(req.body.date_birth)
   var imageUrl = ''
 
   if (req.file && req.file.cloudStoragePublicUrl) {
       imageUrl = req.file.cloudStoragePublicUrl
   }
-  register([id, name, email, age, imageUrl], function(err, result){
+  register([id, name, email, date_birth, imageUrl], function(err, result){
     if (err) {
-      res.status(500).json({ status: "fail", message: err});
+      logError(err)
+      res.status(500).json({ status: "fail", message: "Internal Server Error"});
     } else {
       if (result["affectedRows"] === 1) {
       res.status(201).json({ status: "success", message: "Berhasil membuat akun", data : {user: {...req.body, avatar: imageUrl}}});
       } else {
-      res.status(400).json({ status: "fail", message: err});
+      res.status(400).json({ status: "fail", message: "Gagal membuat akun"});
       }
     }
   })
