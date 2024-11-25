@@ -40,7 +40,7 @@ exports.answers = function (req, res, next) {
   // Memproses jawaban menjadi array dua dimensi untuk disimpan di database
   const values = answers.map((answer) => [
     answer.question_code,
-    1,
+    req.user.user_id,
     answer.answer_value,
   ]);
 
@@ -54,7 +54,7 @@ exports.answers = function (req, res, next) {
       res.status(500).json({ status: "fail", message: "Internal Server Error" });
     } else {
       // Memeriksa apakah jumlah baris yang dipengaruhi sesuai harapan (misalnya 50 jawaban)
-      if (result["affectedRows"] === 50) {
+      if (result["serverStatus"] === 2) {
         predict(ml, function(err1, result1) {
           if (err1) {
             logError(err1)

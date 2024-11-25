@@ -17,11 +17,10 @@ exports.getAll = function(callback) {
 
 // Fungsi untuk menyimpan jawaban pengguna ke dalam tabel 'Answers'
 exports.submit = function(data, callback) {
-    const value = data;
-    let sql = 'INSERT INTO answers (question_code, user_id, answer_value) VALUES ?';
+    let sql = 'INSERT INTO answers (question_code, user_id, answer_value) VALUES ? ON DUPLICATE KEY UPDATE answer_value = VALUES(answer_value)';
     
     // Mengeksekusi query insert dengan data yang diberikan
-    db.query(sql, [value], (err, result) => {
+    db.query(sql, [data], (err, result) => {
         if (err) {
             callback(err, null); // Mengirimkan error ke callback
         } else {
