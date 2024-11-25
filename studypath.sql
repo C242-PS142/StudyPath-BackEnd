@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 13, 2024 at 02:55 PM
+-- Generation Time: Nov 25, 2024 at 11:57 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -29,11 +29,67 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `answers` (
   `id` int NOT NULL,
-  `question_code` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_id` int NOT NULL,
+  `question_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `answer_value` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`id`, `question_code`, `user_id`, `answer_value`, `created_at`) VALUES
+(1204, 'EXT1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1205, 'EXT2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1206, 'EXT3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1207, 'EXT4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1208, 'EXT5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1209, 'EXT6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1210, 'EXT7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1211, 'EXT8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 11:18:21'),
+(1212, 'EXT9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1213, 'EXT10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 11:18:21'),
+(1214, 'EST1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 11:18:21'),
+(1215, 'EST2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 11:18:21'),
+(1216, 'EST3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1217, 'EST4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 11:18:21'),
+(1218, 'EST5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 11:18:21'),
+(1219, 'EST6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 11:18:21'),
+(1220, 'EST7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1221, 'EST8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 11:18:21'),
+(1222, 'EST9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1223, 'EST10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 11:18:21'),
+(1224, 'AGR1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 11:18:21'),
+(1225, 'AGR2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1226, 'AGR3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 11:18:21'),
+(1227, 'AGR4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1228, 'AGR5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 11:18:21'),
+(1229, 'AGR6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1230, 'AGR7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 11:18:21'),
+(1231, 'AGR8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1232, 'AGR9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1233, 'AGR10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 11:18:21'),
+(1234, 'CSN1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1235, 'CSN2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 11:18:21'),
+(1236, 'CSN3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1237, 'CSN4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 11:18:21'),
+(1238, 'CSN5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1239, 'CSN6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 11:18:21'),
+(1240, 'CSN7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1241, 'CSN8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 11:18:21'),
+(1242, 'CSN9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1243, 'CSN10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 11:18:21'),
+(1244, 'OPN1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1245, 'OPN2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 11:18:21'),
+(1246, 'OPN3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1247, 'OPN4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 11:18:21'),
+(1248, 'OPN5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1249, 'OPN6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 11:18:21'),
+(1250, 'OPN7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1251, 'OPN8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 11:18:21'),
+(1252, 'OPN9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21'),
+(1253, 'OPN10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 11:18:21');
 
 -- --------------------------------------------------------
 
@@ -42,9 +98,9 @@ CREATE TABLE `answers` (
 --
 
 CREATE TABLE `questions` (
-  `question_code` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `question_text_en` text COLLATE utf8mb4_general_ci NOT NULL,
-  `question_text_id` text COLLATE utf8mb4_general_ci NOT NULL
+  `question_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `question_text_en` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `question_text_id` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -103,7 +159,6 @@ INSERT INTO `questions` (`question_code`, `question_text_en`, `question_text_id`
 ('OPN8', 'I use difficult words.', 'Saya menggunakan kata-kata yang sulit.'),
 ('OPN9', 'I spend time reflecting on things.', 'Saya meluangkan waktu untuk merenungkan sesuatu.');
 
-
 -- --------------------------------------------------------
 
 --
@@ -111,9 +166,11 @@ INSERT INTO `questions` (`question_code`, `question_text_en`, `question_text_id`
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `date_birth` date NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -121,8 +178,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `created_at`) VALUES
-(1, 'John Doe', 'johndoe@gmail.com', '2024-11-13 14:17:32');
+INSERT INTO `users` (`id`, `name`, `email`, `date_birth`, `avatar`, `created_at`) VALUES
+('8kYIPrLrwwNWAZRG3JagvAMxoZI2', 'scriptalert(\'XSS\')/script', 'nicky@gmail.com', '2024-11-21', 'https://storage.googleapis.com/study-path-bucket/fotoku.jpg', '2024-11-25 10:33:26');
 
 --
 -- Indexes for dumped tables
@@ -133,6 +190,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `created_at`) VALUES
 --
 ALTER TABLE `answers`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `question_code_2` (`question_code`,`user_id`),
   ADD KEY `question_code` (`question_code`),
   ADD KEY `user_id` (`user_id`);
 
@@ -156,13 +214,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=404;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1354;
 
 --
 -- Constraints for dumped tables
@@ -173,7 +225,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `answers`
   ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_code`) REFERENCES `questions` (`question_code`),
-  ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
