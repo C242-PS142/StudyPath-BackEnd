@@ -50,13 +50,23 @@ npm install
 ### 4. Konfigurasi Environment Variables
 Buat file `.env` di root folder dan tambahkan konfigurasi environment sesuai kebutuhan. Contoh:
 ```bash
+// Konfigurasi App
 PORT=3000
 
-//Konfigurasi Database
-DB_HOST=34.101.51.9
+// Konfigurasi Database
+DB_HOST=34.128.95.7
 DB_USER=root
 DB_PASSWORD=
 DB_NAME=studypath
+
+// Konfigurasi API Key Gemini
+API_KEY=
+
+ML_API_URL=http://127.0.0.1:5000/predict
+
+PROJECT_ID=
+GCS_BUCKET_NAME=study-path-bucket
+
 ```
 
 ### 5. Menjalankan Server
@@ -84,7 +94,7 @@ Ganti `<PORT>` dengan nilai yang sudah ditentukan di file `.env` (default: 3000)
 # 📂 Struktur Proyek
 Berikut adalah struktur direktori proyek:
 ```bash
-├── publci              # Folder for static files that can be accessed by clients
+├── public              # Folder for static files that can be accessed by clients
 ├── src
 │   ├── config          # Application configuration, including database connections and other settings
 │   ├── controllers     # Logic for handling requests
@@ -92,9 +102,9 @@ Berikut adalah struktur direktori proyek:
 │   ├── models          # Database models
 │   ├── routes          # API route definitions
 │   ├── services        # Services for complex business logic
-│   └── utils           # Utility functions
+│   ├── utils           # Utility functions
+│   └── app.js          # Main application file
 ├── .env                # Environment configuration
-├── app.js              # Main application file
 ├── Dockerfile          # File Docker untuk membuat container aplikasi
 ├── package.json        # Project metadata and dependencies
 ├── README.md           # Project documentation, instructions for use, and other information
@@ -117,7 +127,7 @@ Jika menemukan error, pastikan:
 
 # API Documentation
 
-### Endpoint: http://localhost:3000
+### Endpoint: http://localhost:<PORT>
 ### Postman Workspace: [Postman](https://app.getpostman.com/join-team?invite_code=c0ab4d52a5b448bd3703ef36b6501962)
 
 ## Get All Quiz
@@ -141,11 +151,13 @@ Jika menemukan error, pastikan:
         "quiz": [
             {
                 "question_code": "AGR1",
-                "question_text": "I feel little concern for others."
+                "question_text": "I feel little concern for others.",
+                "question_text_id": "Saya kurang peduli dengan orang lain."
             },
             {
                 "question_code": "AGR10",
-                "question_text": "I make people feel at ease."
+                "question_text": "I make people feel at ease.",
+                "question_text_id": "Saya membuat orang merasa nyaman."
             },
             ...
         ]
@@ -187,7 +199,17 @@ The request body contains an array of answers. Each answer includes the `questio
 ```json
 {
     "status": "success",
-    "message": "Answers submitted successfully"
+    "message": "Prediction from ML server and Generative AI successfully",
+    "data": {
+        "prediction": {
+            "Kesepakatan": 0.7757217884063721,
+            "Kestabilan Emosi": 0.28837090730667114,
+            "Ketelitian": 0.8003525137901306,
+            "Keterbukaan Sosial, Energi, dan Antusiasme": 0.5924339890480042,
+            "Keterbukaan terhadap Pengalaman": 0.662539005279541
+        },
+        "text": "Hai! Senang bisa membantumu menemukan gaya belajar yang cocok.  Berdasarkan data yang kamu berikan, terlihat bahwa kamu memiliki profil kepribadian yang menarik. Mari kita uraikan satu per satu dan cari strategi belajar yang efektif untukmu:\n\n**Analisis Kepribadian dan Rekomendasi Belajar:**\n\n* **Keterbukaan terhadap Pengalaman (66%):**  Skormu di atas rata-rata menunjukkan kamu cukup terbuka terhadap ide dan pengalaman baru.  Ini bagus! Kamu cenderung menikmati pembelajaran yang beragam dan tidak monoton.  Hindari metode belajar yang terlalu kaku dan berpaku pada satu metode saja.\n\n* **Kestabilan Emosi (29%):** Skor ini menunjukkan kamu mungkin lebih mudah mengalami fluktuasi emosi.  Tekanan belajar bisa berpengaruh cukup besar.  Strategi yang baik adalah:\n    * **Membagi tugas menjadi bagian-bagian kecil:**  Ini akan mengurangi rasa kewalahan.\n    * **Menjadwalkan waktu istirahat:**  Penting untuk me-recharge emosi dan fokus kembali.\n    * **Mengenali pemicu stresmu:**  Apa yang membuatmu mudah stres saat belajar?  Cari cara untuk mengatasinya (misalnya, mendengarkan musik, olahraga ringan).\n    * **Mencari dukungan:**  Bicara dengan orang tua, guru, atau teman jika kamu merasa kesulitan.\n\n* **Keterbukaan Sosial, Energi dan Antusiasme (59%):** Kamu cukup terbuka secara sosial dan memiliki energi yang cukup.  Manfaatkan hal ini!\n    * **Belajar kelompok:**  Diskusi dan saling membantu dengan teman bisa menjadi cara belajar yang menyenangkan dan efektif.\n    * **Cari lingkungan belajar yang mendukung:**  Perpustakaan atau tempat belajar bersama bisa meningkatkan fokus dan antusiasme.\n\n* **Ketelitian (80%):** Skor tinggi ini menunjukkan kamu adalah seorang yang teliti dan detail-oriented.  Ini sangat bagus untuk akademis!\n    * **Buat catatan yang terorganisir:**  Sistematika dan kerapian catatan akan membantumu mengingat materi dengan lebih baik.\n    * **Periksa kembali pekerjaanmu:**  Ketelitianmu akan membantu mencegah kesalahan.\n    * **Gunakan metode belajar yang menekankan detail:**  Mind mapping, diagram, atau catatan berstruktur bisa sangat cocok untukmu.\n\n* **Kesepakatan (78%):** Skor tinggi ini menunjukkan kamu cenderung kooperatif dan suka bekerja sama.  Ini sejalan dengan saran belajar kelompok di atas.  Kamu mungkin juga lebih mudah menerima arahan dan feedback dari guru.\n\n\n**Rekomendasi Belajar Secara Keseluruhan:**\n\nMenggabungkan semua aspek di atas, berikut beberapa saran belajar yang cocok untukmu:\n\n* **Metode Belajar yang Beragam:**  Jangan hanya mengandalkan membaca buku teks.  Cobalah video pembelajaran, podcast, belajar kelompok, membuat mind map, dan lain-lain.  Variasi akan menjaga motivasimu tetap tinggi.\n* **Buat Jadwal Belajar yang Terstruktur tapi Fleksibel:**  Tetapkan target belajar harian atau mingguan, tetapi sisipkan waktu istirahat dan aktivitas yang kamu nikmati.  Jangan terlalu kaku, karena fluktuasi emosi bisa mengganggu.\n* **Cari Dukungan Sosial:**  Bergabunglah dalam kelompok belajar atau diskusi dengan teman-teman.  Dukungan sosial sangat penting untuk mengatasi stres dan meningkatkan motivasi.\n* **Manfaatkan Ketelitianmu:**  Pastikan catatanmu rapi dan terorganisir.  Periksa kembali pekerjaanmu sebelum dikumpulkan.\n* **Jangan Takut untuk Meminta Bantuan:**  Jika ada materi yang sulit dipahami, jangan ragu untuk bertanya kepada guru atau teman.\n\n\nSebagai siswa SMP, fokuslah pada strategi pengelolaan waktu dan mencari metode belajar yang paling nyaman dan efektif bagimu.  Eksperimenlah dengan berbagai metode dan temukan yang paling sesuai dengan gaya belajar dan kepribadianmu.  Semoga saran ini membantumu!\n"
+    }
 }
 ```
 #### Error Response
@@ -244,7 +266,7 @@ The request body contains an array of answers. Each answer includes the `questio
         "uid": "hqil0iLnndRef76cPQWQsL8enrD2",
         "name": "Johanes Nicky",
         "email": "j.baptista57@yahoo.com",
-        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJgtWOc9ZZjnYcKrM-XGPmIacOX9XHlX6nsZRFCjiShosGoS-U8=s96-c"
+        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJgtWOc9ZZjnYcKrM-XGPmIacOX9XHlX6nsZRFCjiShosGoS-U8=s96-c"
     }
 }
 ```
@@ -292,6 +314,64 @@ The request body contains an array of answers. Each answer includes the `questio
             "exp": 1732114320,
             "email": "j.baptista57@yahoo.com",
             "uid": "hqil0iLnndRef76cPQWQsL8enrD2"
+        }
+    }
+}
+```
+#### Error Response
+**Status Code**: `401 Unauthorized`
+**Response Body**:
+```json
+{
+    "status": "fail",
+    "message": "Unauthorized: Invalid Access Token"
+}
+```
+
+## Me
+
+### URL
+`/auth/register`
+
+### Method
+`POST`
+
+### Headers
+| Key           | Value                   |
+|---------------|-------------------------|
+| Authorization | -                       |
+| Content-Type  | application/json        |
+
+### Request Body
+The request body contains an array of answers. Each answer includes the `question_code` and the `answer_value`.
+
+#### Example Request Body
+```json
+{
+  "id": "8kYIPrLrwwNWAZRG3JagvAMxoZI2",
+  "name": "Nicky",
+  "email": "nicky@gmail.com",
+  "date_birth": "2024-11-21",
+  "avatar": "upload.jpg"
+}
+```
+
+### Response
+
+#### Success Response
+**Status Code**: `201 OK`  
+**Response Body**:
+```json
+{
+    "status": "success",
+    "message": "Berhasil membuat akun",
+    "data": {
+        "user": {
+            "id": "8kYIPrLrwwNWAZRG3JagvAMxoZI2",
+            "name": "Nicky",
+            "email": "nicky@gmail.com",
+            "date_birth": "2024-11-21",
+            "avatar": "https://storage.googleapis.com/study-path-bucket/fotoku.jpg"
         }
     }
 }

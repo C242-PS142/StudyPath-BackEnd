@@ -19,12 +19,10 @@ app.get('/', (req, res) => {
 
 
 
-const mainRouter = require('./src/routes')
+const mainRouter = require('./routes');
+const { loggerMiddleware } = require('./middlewares/loggerMiddleware');
 
-app.use((req, res, next)=>{
-    console.log(`Log : ${req.method} ${req.url}`)
-    next()
-})
+app.use(loggerMiddleware)
 
 app.use(mainRouter)
 
