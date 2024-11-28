@@ -104,22 +104,19 @@ exports.register = function(req, res, next){
 exports.update = function(req, res, next){
   const id = req.user.user_id
   const name = (req.body.name)
-  const email = (req.body.email)
-  const date_birth = (req.body.date_birth)
-  const gender = (req.body.gender)
   var imageUrl = ''
 
   if (req.file && req.file.cloudStoragePublicUrl) {
       imageUrl = req.file.cloudStoragePublicUrl
   }
 
-  edit([name, email, date_birth, gender, imageUrl, id], function(err, result){
+  edit([name, imageUrl, id], function(err, result){
     if (err) {
       logError(err);
       res.status(500).json({ status: "fail", message: "Internal Server Error"})
     } else {
       if (result["affectedRows"] === 1) {
-        res.status(201).json({ status: "success", message: "Berhasil mengedit akun", data : {user: {id: id, ...req.body, avatar: imageUrl}}});
+        res.status(201).json({ status: "success", message: "Berhasil mengedit akun", data : {user: {id, name, avatar: imageUrl}}});
         } else {
         res.status(400).json({ status: "fail", message: "Gagal membuat akun"});
         }
