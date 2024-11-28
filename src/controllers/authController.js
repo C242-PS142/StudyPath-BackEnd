@@ -110,6 +110,10 @@ exports.update = function(req, res, next){
       imageUrl = req.file.cloudStoragePublicUrl
   }
 
+  if (req.body.avatar) {
+    imageUrl = req.body.avatar
+  }
+
   edit([name, imageUrl, id], function(err, result){
     if (err) {
       logError(err);
