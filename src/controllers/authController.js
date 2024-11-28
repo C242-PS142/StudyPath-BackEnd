@@ -1,17 +1,30 @@
 const admin = require("../config/firebase"),
-{ register } = require('../models/authModel');
+{ register, check, edit } = require('../models/authModel');
 const { logError } = require("../utils/loggerUtil");
 const { sanitizeString } = require("../utils/sanitizeUtil");
 
 // Fungsi untuk endpoint 'me' yang mengembalikan informasi pengguna saat ini
 exports.me = function (req, res, next) {
-  res
-    .status(200)
-    .json({
-      status: "success",
-      message: "User fetched successfully",
-      data: { user: req.user },
-    });
+  check(req.user.user_id, function(err, result){
+    if (err) {
+      logError(err);
+      res.status(500).json({ status: "fail", message: "Internal server Error"});
+    } else {
+      if (result.length === 0) {
+        return res.status(200).json({status: "fail",
+          message: "Akun tidak ada",
+          data: { isRegister: false, result}})
+      } else{
+        if (result[0].id === req.user.user_id) {
+          return res.status(200).json({
+            status: "success",
+            message: "Akun ada",
+            data: {isRegister: true, result}
+          });
+        }
+      }
+    }
+  })
 };
 
 // Fungsi untuk endpoint 'login' yang menangani autentikasi pengguna
@@ -32,13 +45,29 @@ exports.login = async function (req, res, next) {
     // Verifikasi token dan ambil data pengguna
     const decodedToken = await admin.auth().verifyIdToken(accessToken);
     const { uid, email, picture, name } = decodedToken;
+    check(uid, function(err, result){
+      if (err) {
+        logError(err)
+        return res.status(500).json({status: "fail", message: "Internal Server Error"})
+      } else {
+        if (result.length === 0) {
+          return res.status(200).json({status: "success",
+            message: "Login successful",
+            data: { isRegister: false, result:[{ uid, name, email, picture }]}})
+        } else{
+          if (result[0].id === uid) {
+            return res.status(200).json({
+              status: "success",
+              message: "Login successful",
+              data: {isRegister: true, result}
+            });
+          }
+        }
+      }
+    })
 
     // Kirim data pengguna ke klien
-    return res.status(200).json({
-      status: "success",
-      message: "Login successful",
-      data: { uid, name, email, avatar: picture },
-    });
+    
   } catch (error) {
     logError(error);
     return res
@@ -68,6 +97,32 @@ exports.register = function(req, res, next){
       } else {
       res.status(400).json({ status: "fail", message: "Gagal membuat akun"});
       }
+    }
+  })
+}
+
+exports.update = function(req, res, next){
+  const id = req.user.user_id
+  const name = (req.body.name)
+  const email = (req.body.email)
+  const date_birth = (req.body.date_birth)
+  const gender = (req.body.gender)
+  var imageUrl = ''
+
+  if (req.file && req.file.cloudStoragePublicUrl) {
+      imageUrl = req.file.cloudStoragePublicUrl
+  }
+
+  edit([name, email, date_birth, gender, imageUrl, id], function(err, result){
+    if (err) {
+      logError(err);
+      res.status(500).json({ status: "fail", message: "Internal Server Error"})
+    } else {
+      if (result["affectedRows"] === 1) {
+        res.status(201).json({ status: "success", message: "Berhasil mengedit akun", data : {user: {id: id, ...req.body, avatar: imageUrl}}});
+        } else {
+        res.status(400).json({ status: "fail", message: "Gagal membuat akun"});
+        }
     }
   })
 }
