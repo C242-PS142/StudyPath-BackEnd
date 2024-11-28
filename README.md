@@ -158,14 +158,16 @@ Jika menemukan error, pastikan:
     "data": {
         "quiz": [
             {
-                "question_code": "AGR1",
-                "question_text": "I feel little concern for others.",
-                "question_text_id": "Saya kurang peduli dengan orang lain."
+                "id": 1,
+                "question_code": "EXT1",
+                "question_text_en": "I am the life of the party.",
+                "question_text_id": "Saya adalah pusat perhatian di pesta."
             },
             {
-                "question_code": "AGR10",
-                "question_text": "I make people feel at ease.",
-                "question_text_id": "Saya membuat orang merasa nyaman."
+                "id": 2,
+                "question_code": "EXT2",
+                "question_text_en": "I don't talk a lot.",
+                "question_text_id": "Saya tidak banyak bicara."
             },
             ...
         ]

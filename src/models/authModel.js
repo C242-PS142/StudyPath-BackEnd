@@ -1,13 +1,34 @@
 const db = require('../config/dbConfig');
 
 exports.register = function(data ,callback) {
-    const value = data;
     const sql = 'INSERT INTO users (id, name, email, date_birth, gender, avatar) VALUES (?)';
-    db.query(sql, [value], (err, result) => {
+    db.query(sql, [data], (err, result) => {
         if (err) {
             callback(err, null); // Mengirimkan error ke callback
         } else {
             callback(null, result); // Mengirimkan hasil ke callback
         }
     })
+}
+
+exports.check = function(data, callback){
+    const sql = 'SELECT * FROM users WHERE id = ? LIMIT 1';
+    db.query(sql, [data], (err, result) => {
+        if (err) {
+            callback(err, null); // Mengirimkan error ke callback
+        } else {
+            callback(null, result) // Mengirimkan hasil ke callback
+        }
+    })
+}
+
+exports.edit = function(data, callback) {
+    const sql = `UPDATE users SET name = ?, email = ?, date_birth = ?, gender = ?, avatar = ? WHERE id = ?`;
+    db.query(sql, data, (err, result) => {
+        if (err) {
+            callback(err, null); // Mengirimkan error ke callback
+        } else {
+            callback(null, result); // Mengirimkan hasil ke callback
+        }
+    });
 }
