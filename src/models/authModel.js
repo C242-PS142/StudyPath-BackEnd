@@ -23,7 +23,7 @@ exports.check = function(data, callback){
 }
 
 exports.edit = function(data, callback) {
-    const sql = `UPDATE users SET name = ?, email = ?, date_birth = ?, gender = ?, avatar = ? WHERE id = ?`;
+    const sql = `UPDATE users SET name = ?, avatar = ? WHERE id = ?`;
     db.query(sql, data, (err, result) => {
         if (err) {
             callback(err, null); // Mengirimkan error ke callback
