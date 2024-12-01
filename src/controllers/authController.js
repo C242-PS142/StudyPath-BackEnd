@@ -1,5 +1,5 @@
 const admin = require("../config/firebase"),
-{ register, check, edit } = require('../models/authModel');
+{ register, check, edit, checkAnswer } = require('../models/authModel');
 const { logError } = require("../utils/loggerUtil");
 const { sanitizeString } = require("../utils/sanitizeUtil");
 
@@ -56,11 +56,26 @@ exports.login = async function (req, res, next) {
             data: { isRegister: false, result:[{ uid, name, email, picture }]}})
         } else{
           if (result[0].id === uid) {
-            return res.status(200).json({
-              status: "success",
-              message: "Login successful",
-              data: {isRegister: true, result}
-            });
+            checkAnswer(uid, function(error, result3) {
+              if (error) {
+                logError(error);
+                res.status(500).json({status: "fail", message: "Internal Server Error"})
+              } else {
+                if (result3.length === 50) {
+                  res.status(200).json({
+                    status: "success",
+                    message: "Login successful",
+                    data: {isRegister: true, isAnswerQuiz: true, result: result[0]}
+                  });
+                } else {
+                  res.status(200).json({
+                    status: "success",
+                    message: "Login successful",
+                    data: {isRegister: true, isAnswerQuiz: false, result: result[0]}
+                  });
+                }
+              }
+            })
           }
         }
       }

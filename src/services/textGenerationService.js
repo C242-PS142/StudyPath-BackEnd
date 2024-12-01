@@ -20,14 +20,37 @@ Nilai dari data tersebut adalah persentase 0 sampai 100%, semakin tinggi menanda
 
 Saya meminta untuk memberikan saran belajar untuk hal tersebut dengan menimbang kelima data, namun nanti di sajikan tiap tiap 5 aspek tersebut. Audiens dari data nantinya adalah siswa/siswa SMP dan SMA.
 
-Saya Seorang Siswa SMP, Jenis Kelamin Perempuan, Usia 14 Tahun, Saya ingin meminta rekomendasi untuk saya belajar yang sesuai dengan kepribadian saya, berikut data saya:
+contoh hasil seperti dibawah:
+1. Keterbukaan Terhadap Pengalaman (66%)
+Anda cukup terbuka terhadap pengalaman baru dan ide-ide kreatif. Ini berarti Anda mungkin menikmati pembelajaran yang melibatkan eksplorasi dan inovasi.
+
+Rekomendasi: Cobalah pelajaran yang melibatkan kreativitas, seperti seni, sastra, atau eksperimen sains. Ikuti klub atau kegiatan yang mendorong pemikiran kritis dan imajinasi, seperti coding atau debat.
+2. Kestabilan Emosi (28%)
+Skor ini menunjukkan bahwa Anda mungkin lebih sensitif terhadap tekanan atau stres, dan mudah terpengaruh oleh suasana hati.
+
+Rekomendasi: Ciptakan rutinitas belajar yang terstruktur untuk mengurangi kecemasan. Gunakan teknik seperti meditasi ringan atau olahraga untuk menjaga keseimbangan emosi. Fokus pada satu tugas dalam satu waktu untuk menghindari perasaan kewalahan.
+3. Keterbukaan Sosial, Energi, dan Antusiasme (55%)
+Anda cukup sosial dan antusias, meskipun tidak selalu mencari banyak interaksi.
+
+Rekomendasi: Manfaatkan kelompok belajar kecil atau diskusi online. Anda bisa lebih efektif belajar dalam situasi yang tidak terlalu ramai. Cobalah mengajar teman sebaya—ini bisa memperkuat pemahaman Anda dan tetap memberi interaksi sosial.
+4. Ketelitian (79%)
+Ini menunjukkan bahwa Anda adalah orang yang terorganisir dan bertanggung jawab.
+
+Rekomendasi: Manfaatkan keterampilan ini dengan membuat jadwal belajar yang jelas dan daftar tugas harian. Pilih mata pelajaran yang memerlukan fokus dan perhatian terhadap detail, seperti matematika atau pemrograman.
+5. Kesepakatan (77%)
+Anda cenderung kooperatif, peduli, dan mudah berempati terhadap orang lain.
+
+Rekomendasi: Pertimbangkan untuk bergabung dalam proyek kelompok yang mendorong kerja sama, seperti kegiatan sosial atau penelitian bersama. Anda juga bisa menjadi mentor bagi teman yang membutuhkan bantuan.
+
+Sekarang buatkan jawaban untuk detail di Bawah ini:
+Saya Seorang Siswa SMA, Jenis Kelamin Laki-Laki, Usia 17 Tahun, Saya ingin meminta rekomendasi untuk saya belajar yang sesuai dengan kepribadian saya, berikut data saya:
 
 KETERBUKAAN TERHADAP PENGALAMAN: ${Openness}%
 KESTABILAN EMOSI: ${Neuroticism}%
 KETERBUKAAN SOSIAL, ENERGI DAN ANTUSIASME: ${Extroversion}%
 KETELITIAN: ${Conscientiousness}%
 KESEPAKATAN: ${Agreeableness}%
-Berikan response dalam bentuk json object dengan key sesuai dengan Big V
+Buatkan jawaban sesuai dengan contoh yang diberikan tanpa menambah karakter yang tidak diperlukan
 `;
     const genAI = new GoogleGenerativeAI(process.env.API_KEY);
     try {
