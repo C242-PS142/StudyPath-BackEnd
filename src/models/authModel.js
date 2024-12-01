@@ -1,3 +1,4 @@
+// const db = require('../config/cloudSQL');
 const db = require('../config/dbConfig');
 
 exports.register = function(data ,callback) {
@@ -31,4 +32,15 @@ exports.edit = function(data, callback) {
             callback(null, result); // Mengirimkan hasil ke callback
         }
     });
+}
+
+exports.checkAnswer = function(data, callback) {
+    const sql = 'SELECT * FROM answers WHERE user_id = ?';
+    db.query(sql, [data], (err, result) => {
+        if (err) {
+            callback(err, null); // Mengirimkan error ke callback
+        } else {
+            callback(null, result) // Mengirimkan hasil ke callback
+        }
+    })
 }

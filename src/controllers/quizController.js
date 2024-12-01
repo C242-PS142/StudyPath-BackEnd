@@ -1,4 +1,4 @@
-const { getAll, submit } = require("../models/quizModel"),
+const { getAll, submit, savePredict, saveRecomend } = require("../models/quizModel"),
 {predict} = require('../services/mlService'),
 {generateText} = require('../services/textGenerationService');
 const { logError } = require("../utils/loggerUtil");
@@ -17,13 +17,7 @@ exports.getAll = function (req, res, next) {
           message: "Error while retrieving data from database",
         });
     } else {
-      res
-        .status(200)
-        .json({
-          status: "success",
-          message: "Quiz fetched successfully",
-          data: { quiz: result },
-        });
+      res.status(200).json({status: "success", message: "Quiz fetched successfully", data: { quiz: result }});
     }
   });
 };
@@ -60,12 +54,26 @@ exports.answers = function (req, res, next) {
             logError(err1)
             res.status(500).json({ status: "fail", message: "Machine Learning Internal Server Error"})
           } else {
-            generateText(result1.prediction, function(err2, result2) {
-              if (err2) {
-            logError(err2)
-            res.status(500).json({ status: "fail", message: "Generate Text Internal Server Error" });
+            savePredict(req.user.user_id, result1.prediction, function(error, resul){
+              if (error) {
+                logError(error)
+                res.status(500).json({ status: "fail", message: "Internal Server Error" })
               } else {
-                  res.status(200).json({ status: "success", message: "Prediction from ML server and Generative AI successfully", data: {prediction: result1.prediction, text: result2}})
+                generateText(result1.prediction, function(err2, result2) {
+                  if (err2) {
+                    logError(err2)
+                    res.status(500).json({ status: "fail", message: "Generate Text Internal Server Error" });
+                  } else {
+                    saveRecomend(req.user.user_id, result2, function(errorr, resull) {
+                      if (errorr) {
+                        logError(errorr);
+                        res.status(500).json({ status: "fail", message: "Internal Server Error" })
+                      } else {
+                        res.status(200).json({ status: "success", message: "Prediction from ML server successfully", data: result1})
+                      }
+                    })
+                  }
+                })
               }
             })
           }
