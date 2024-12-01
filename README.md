@@ -209,16 +209,15 @@ The request body contains an array of answers. Each answer includes the `questio
 ```json
 {
     "status": "success",
-    "message": "Prediction from ML server and Generative AI successfully",
+    "message": "Prediction from ML server successfully",
     "data": {
         "prediction": {
             "Kesepakatan": 0.7757217884063721,
             "Kestabilan Emosi": 0.28837090730667114,
-            "Ketelitian": 0.8003525137901306,
-            "Keterbukaan Sosial, Energi, dan Antusiasme": 0.5924339890480042,
+            "Ketelitian": 0.8003525733947754,
+            "Keterbukaan Sosial, Energi, dan Antusiasme": 0.5924340486526489,
             "Keterbukaan terhadap Pengalaman": 0.662539005279541
-        },
-        "text": "Hai! Senang bisa membantumu menemukan gaya belajar yang cocok.  Berdasarkan data yang kamu berikan, terlihat bahwa kamu memiliki profil kepribadian yang menarik. Mari kita uraikan satu per satu dan cari strategi belajar yang efektif untukmu:\n\n**Analisis Kepribadian dan Rekomendasi Belajar:**\n\n* **Keterbukaan terhadap Pengalaman (66%):**  Skormu di atas rata-rata menunjukkan kamu cukup terbuka terhadap ide dan pengalaman baru.  Ini bagus! Kamu cenderung menikmati pembelajaran yang beragam dan tidak monoton.  Hindari metode belajar yang terlalu kaku dan berpaku pada satu metode saja.\n\n* **Kestabilan Emosi (29%):** Skor ini menunjukkan kamu mungkin lebih mudah mengalami fluktuasi emosi.  Tekanan belajar bisa berpengaruh cukup besar.  Strategi yang baik adalah:\n    * **Membagi tugas menjadi bagian-bagian kecil:**  Ini akan mengurangi rasa kewalahan.\n    * **Menjadwalkan waktu istirahat:**  Penting untuk me-recharge emosi dan fokus kembali.\n    * **Mengenali pemicu stresmu:**  Apa yang membuatmu mudah stres saat belajar?  Cari cara untuk mengatasinya (misalnya, mendengarkan musik, olahraga ringan).\n    * **Mencari dukungan:**  Bicara dengan orang tua, guru, atau teman jika kamu merasa kesulitan.\n\n* **Keterbukaan Sosial, Energi dan Antusiasme (59%):** Kamu cukup terbuka secara sosial dan memiliki energi yang cukup.  Manfaatkan hal ini!\n    * **Belajar kelompok:**  Diskusi dan saling membantu dengan teman bisa menjadi cara belajar yang menyenangkan dan efektif.\n    * **Cari lingkungan belajar yang mendukung:**  Perpustakaan atau tempat belajar bersama bisa meningkatkan fokus dan antusiasme.\n\n* **Ketelitian (80%):** Skor tinggi ini menunjukkan kamu adalah seorang yang teliti dan detail-oriented.  Ini sangat bagus untuk akademis!\n    * **Buat catatan yang terorganisir:**  Sistematika dan kerapian catatan akan membantumu mengingat materi dengan lebih baik.\n    * **Periksa kembali pekerjaanmu:**  Ketelitianmu akan membantu mencegah kesalahan.\n    * **Gunakan metode belajar yang menekankan detail:**  Mind mapping, diagram, atau catatan berstruktur bisa sangat cocok untukmu.\n\n* **Kesepakatan (78%):** Skor tinggi ini menunjukkan kamu cenderung kooperatif dan suka bekerja sama.  Ini sejalan dengan saran belajar kelompok di atas.  Kamu mungkin juga lebih mudah menerima arahan dan feedback dari guru.\n\n\n**Rekomendasi Belajar Secara Keseluruhan:**\n\nMenggabungkan semua aspek di atas, berikut beberapa saran belajar yang cocok untukmu:\n\n* **Metode Belajar yang Beragam:**  Jangan hanya mengandalkan membaca buku teks.  Cobalah video pembelajaran, podcast, belajar kelompok, membuat mind map, dan lain-lain.  Variasi akan menjaga motivasimu tetap tinggi.\n* **Buat Jadwal Belajar yang Terstruktur tapi Fleksibel:**  Tetapkan target belajar harian atau mingguan, tetapi sisipkan waktu istirahat dan aktivitas yang kamu nikmati.  Jangan terlalu kaku, karena fluktuasi emosi bisa mengganggu.\n* **Cari Dukungan Sosial:**  Bergabunglah dalam kelompok belajar atau diskusi dengan teman-teman.  Dukungan sosial sangat penting untuk mengatasi stres dan meningkatkan motivasi.\n* **Manfaatkan Ketelitianmu:**  Pastikan catatanmu rapi dan terorganisir.  Periksa kembali pekerjaanmu sebelum dikumpulkan.\n* **Jangan Takut untuk Meminta Bantuan:**  Jika ada materi yang sulit dipahami, jangan ragu untuk bertanya kepada guru atau teman.\n\n\nSebagai siswa SMP, fokuslah pada strategi pengelolaan waktu dan mencari metode belajar yang paling nyaman dan efektif bagimu.  Eksperimenlah dengan berbagai metode dan temukan yang paling sesuai dengan gaya belajar dan kepribadianmu.  Semoga saran ini membantumu!\n"
+        }
     }
 }
 ```
@@ -273,10 +272,17 @@ The request body contains an array of answers. Each answer includes the `questio
     "status": "success",
     "message": "Login successful",
     "data": {
-        "uid": "hqil0iLnndRef76cPQWQsL8enrD2",
-        "name": "Johanes Nicky",
-        "email": "j.baptista57@yahoo.com",
-        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJgtWOc9ZZjnYcKrM-XGPmIacOX9XHlX6nsZRFCjiShosGoS-U8=s96-c"
+        "isRegister": true,
+        "isAnswerQuiz": true,
+        "result": {
+            "id": "8kYIPrLrwwNWAZRG3JagvAMxoZI2",
+            "name": "Nicky",
+            "email": "nicky@gmail.com",
+            "date_birth": "2024-11-21T00:00:00.000Z",
+            "gender": "L",
+            "avatar": "https://storage.googleapis.com/study-path-bucket/fotoku.jpg",
+            "created_at": "2024-11-28T18:24:50.000Z"
+        }
     }
 }
 ```
@@ -314,17 +320,18 @@ The request body contains an array of answers. Each answer includes the `questio
     "status": "success",
     "message": "User fetched successfully",
     "data": {
-        "user": {
-            "name": "Johanes Nicky",
-            "picture": "https://lh3.googleusercontent.com/a/ACg8ocJgtWOc9ZZjnYcKrM-XGPmIacOX9XHlX6nsZRFCjiShosGoS-U8=s96-c",
-            "auth_time": 1732110720,
-            "user_id": "hqil0iLnndRef76cPQWQsL8enrD2",
-            "sub": "hqil0iLnndRef76cPQWQsL8enrD2",
-            "iat": 1732110720,
-            "exp": 1732114320,
-            "email": "j.baptista57@yahoo.com",
-            "uid": "hqil0iLnndRef76cPQWQsL8enrD2"
-        }
+        "isRegister": true,
+        "result": [
+            {
+                "id": "8kYIPrLrwwNWAZRG3JagvAMxoZI2",
+                "name": "Nicky",
+                "email": "nicky@gmail.com",
+                "date_birth": "2024-11-21T00:00:00.000Z",
+                "gender": "L",
+                "avatar": "https://storage.googleapis.com/study-path-bucket/fotoku.jpg",
+                "created_at": "2024-11-28T18:24:50.000Z"
+            }
+        ]
     }
 }
 ```
@@ -381,7 +388,176 @@ The request body contains an array of answers. Each answer includes the `questio
             "name": "Nicky",
             "email": "nicky@gmail.com",
             "date_birth": "2024-11-21",
+            "gender": "L",
             "avatar": "https://storage.googleapis.com/study-path-bucket/fotoku.jpg"
+        }
+    }
+}
+```
+#### Error Response
+**Status Code**: `401 Unauthorized`
+**Response Body**:
+```json
+{
+    "status": "fail",
+    "message": "Unauthorized: Invalid Access Token"
+}
+```
+
+## Edit
+
+### URL
+`/auth/edit`
+
+### Method
+`POST`
+
+### Headers
+| Key           | Value                   |
+|---------------|-------------------------|
+| Authorization | Bearer `<your_token>`   |
+| Content-Type  | application/json        |
+
+### Request Body
+The request body contains an array of answers. Each answer includes the `question_code` and the `answer_value`.
+
+#### Example Request Body
+```json
+{
+  "name": "Nicky",
+  "avatar": "https://storage.googleapis.com/study-path-bucket/StudyPath 2.png"
+}
+```
+
+### Response
+
+#### Success Response
+**Status Code**: `201 OK`  
+**Response Body**:
+```json
+{
+    "status": "success",
+    "message": "Berhasil mengedit akun",
+    "data": {
+        "user": {
+            "id": "8kYIPrLrwwNWAZRG3JagvAMxoZI2",
+            "name": "nickyssss",
+            "avatar": "https://storage.googleapis.com/study-path-bucket/StudyPath 2.png"
+        }
+    }
+}
+```
+#### Error Response
+**Status Code**: `401 Unauthorized`
+**Response Body**:
+```json
+{
+    "status": "fail",
+    "message": "Unauthorized: Invalid Access Token"
+}
+```
+
+## Prediction
+
+### URL
+`/api/predict`
+
+### Method
+`GET`
+
+### Headers
+| Key           | Value                   |
+|---------------|-------------------------|
+| Authorization | Bearer `<your_token>`   |
+| Content-Type  | application/json        |
+
+### Response
+
+#### Success Response
+**Status Code**: `200 OK`  
+**Response Body**:
+```json
+{
+    "status": "success",
+    "message": "Personality fetched successfully",
+    "data": {
+        "personality": {
+            "Keterbukaan Sosial, Energi, dan Antusiasme": 0.592434,
+            "Kestabilan Emosi": 0.288371,
+            "Kesepakatan": 0.775722,
+            "Ketelitian": 0.800353,
+            "Keterbukaan terhadap Pengalaman": 0.662539
+        }
+    }
+}
+```
+#### Error Response
+**Status Code**: `401 Unauthorized`
+**Response Body**:
+```json
+{
+    "status": "fail",
+    "message": "Unauthorized: Invalid Access Token"
+}
+```
+
+## Recommendation
+
+### URL
+`/api/recommendation`
+
+### Method
+`GET`
+
+### Headers
+| Key           | Value                   |
+|---------------|-------------------------|
+| Authorization | Bearer `<your_token>`   |
+| Content-Type  | application/json        |
+
+### Response
+
+#### Success Response
+**Status Code**: `200 OK`  
+**Response Body**:
+```json
+{
+    "status": "success",
+    "message": "Recommendation fetched successfully",
+    "data": {
+        "recommendation": {
+            "id": 10,
+            "user_id": "8kYIPrLrwwNWAZRG3JagvAMxoZI2",
+            "extraversion": {
+                "skor": 59,
+                "judul": "Keterbukaan Sosial, Energi, dan Antusiasme",
+                "deskripsi": "Anda cukup sosial dan antusias, meskipun tidak selalu mencari banyak interaksi.",
+                "rekomendasi": "Manfaatkan kelompok belajar kecil atau diskusi online. Anda bisa lebih efektif belajar dalam situasi yang tidak terlalu ramai. Cobalah mengajar teman sebaya—ini bisa memperkuat pemahaman Anda dan tetap memberi interaksi sosial."
+            },
+            "neuroticism": {
+                "skor": 29,
+                "judul": "Kestabilan Emosi",
+                "deskripsi": "Skor ini menunjukkan bahwa Anda mungkin lebih sensitif terhadap tekanan atau stres, dan mudah terpengaruh oleh suasana hati.",
+                "rekomendasi": "Ciptakan rutinitas belajar yang terstruktur untuk mengurangi kecemasan. Gunakan teknik seperti meditasi ringan atau olahraga untuk menjaga keseimbangan emosi. Fokus pada satu tugas dalam satu waktu untuk menghindari perasaan kewalahan.  Prioritaskan istirahat yang cukup."
+            },
+            "agreeableness": {
+                "skor": 78,
+                "judul": "Kesepakatan",
+                "deskripsi": "Anda cenderung kooperatif, peduli, dan mudah berempati terhadap orang lain.",
+                "rekomendasi": "Pertimbangkan untuk bergabung dalam proyek kelompok yang mendorong kerja sama, seperti kegiatan sosial atau penelitian bersama. Anda juga bisa menjadi mentor bagi teman yang membutuhkan bantuan."
+            },
+            "conscientiousness": {
+                "skor": 80,
+                "judul": "Ketelitian",
+                "deskripsi": "Ini menunjukkan bahwa Anda adalah orang yang terorganisir dan bertanggung jawab.",
+                "rekomendasi": "Manfaatkan keterampilan ini dengan membuat jadwal belajar yang jelas dan daftar tugas harian. Pilih mata pelajaran yang memerlukan fokus dan perhatian terhadap detail, seperti matematika atau pemrograman."
+            },
+            "openness": {
+                "skor": 66,
+                "judul": "Keterbukaan Terhadap Pengalaman",
+                "deskripsi": "Anda cukup terbuka terhadap pengalaman baru dan ide-ide kreatif. Ini berarti Anda mungkin menikmati pembelajaran yang melibatkan eksplorasi dan inovasi.",
+                "rekomendasi": "Cobalah pelajaran yang melibatkan kreativitas, seperti seni, sastra, atau eksperimen sains. Ikuti klub atau kegiatan yang mendorong pemikiran kritis dan imajinasi, seperti coding atau debat."
+            }
         }
     }
 }
