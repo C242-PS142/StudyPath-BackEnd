@@ -1,5 +1,5 @@
-// const db = require('../config/cloudSQL');
-const db = require('../config/dbConfig');
+const db = require('../config/cloudSQL');
+// const db = require('../config/dbConfig');
 
 // Fungsi untuk mengambil semua pertanyaan dari tabel 'questions'
 exports.getAll = function(callback) {
@@ -36,10 +36,10 @@ exports.savePredict = function(id, data, callback){
     const Conscientiousness = data["Ketelitian"];
     const Agreeableness = data["Kesepakatan"];
     let sql = `
-        INSERT INTO personalities (user_id, extraversion, neuroticism, agreeableness, conscientiousness, openness)
+        INSERT INTO personalities (user_id, extroversion, neuroticism, agreeableness, conscientiousness, openness)
         VALUES (?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE 
-        extraversion = VALUES(extraversion), 
+        extroversion = VALUES(extroversion), 
         neuroticism = VALUES(neuroticism), 
         agreeableness = VALUES(agreeableness), 
         conscientiousness = VALUES(conscientiousness), 
@@ -77,23 +77,23 @@ exports.saveRecomend = function(id, data, callback) {
             locker.push(hasil);
         }
     });
-    const extraversion = JSON.stringify(locker[2]);
+    const extroversion = JSON.stringify(locker[2]);
     const neuroticism = JSON.stringify(locker[1]);
     const agreeableness = JSON.stringify(locker[4]);
     const conscientiousness = JSON.stringify(locker[3]);
     const openness = JSON.stringify(locker[0]);
     console.log(locker)
     let sql = `
-        INSERT INTO recommendations (user_id, extraversion, neuroticism, agreeableness, conscientiousness, openness)
+        INSERT INTO recommendations (user_id, extroversion, neuroticism, agreeableness, conscientiousness, openness)
         VALUES (?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE 
-        extraversion = VALUES(extraversion), 
+        extroversion = VALUES(extroversion), 
         neuroticism = VALUES(neuroticism), 
         agreeableness = VALUES(agreeableness), 
         conscientiousness = VALUES(conscientiousness), 
         openness = VALUES(openness)
     `;
-    db.query(sql, [id, extraversion, neuroticism, agreeableness, conscientiousness, openness], (err, result) => {
+    db.query(sql, [id, extroversion, neuroticism, agreeableness, conscientiousness, openness], (err, result) => {
         if (err) {
             callback(err, null); // Mengirimkan error ke callback
         } else {

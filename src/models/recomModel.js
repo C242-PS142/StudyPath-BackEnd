@@ -1,5 +1,5 @@
-// const db = require('../config/cloudSQL');
-const db = require('../config/dbConfig');
+const db = require('../config/cloudSQL');
+// const db = require('../config/dbConfig');
 
 exports.getByID = function (data, callback) {
     let sql = `SELECT * FROM recommendations WHERE user_id = ? LIMIT 1`
