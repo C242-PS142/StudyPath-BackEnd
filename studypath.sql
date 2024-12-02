@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 25, 2024 at 03:17 PM
+-- Generation Time: Dec 02, 2024 at 06:55 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -40,56 +40,79 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id`, `question_code`, `user_id`, `answer_value`, `created_at`) VALUES
-(1455, 'EXT1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1456, 'EXT2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1457, 'EXT3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1458, 'EXT4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1459, 'EXT5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1460, 'EXT6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1461, 'EXT7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1462, 'EXT8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 15:17:01'),
-(1463, 'EXT9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1464, 'EXT10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 15:17:01'),
-(1465, 'EST1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 15:17:01'),
-(1466, 'EST2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 15:17:01'),
-(1467, 'EST3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1468, 'EST4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 15:17:01'),
-(1469, 'EST5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 15:17:01'),
-(1470, 'EST6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 15:17:01'),
-(1471, 'EST7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1472, 'EST8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 15:17:01'),
-(1473, 'EST9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1474, 'EST10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-11-25 15:17:01'),
-(1475, 'AGR1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 15:17:01'),
-(1476, 'AGR2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1477, 'AGR3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 15:17:01'),
-(1478, 'AGR4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1479, 'AGR5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 15:17:01'),
-(1480, 'AGR6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1481, 'AGR7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 15:17:01'),
-(1482, 'AGR8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1483, 'AGR9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1484, 'AGR10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 15:17:01'),
-(1485, 'CSN1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1486, 'CSN2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 15:17:01'),
-(1487, 'CSN3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1488, 'CSN4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 15:17:01'),
-(1489, 'CSN5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1490, 'CSN6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 15:17:01'),
-(1491, 'CSN7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1492, 'CSN8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 15:17:01'),
-(1493, 'CSN9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1494, 'CSN10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 15:17:01'),
-(1495, 'OPN1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1496, 'OPN2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 15:17:01'),
-(1497, 'OPN3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1498, 'OPN4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-11-25 15:17:01'),
-(1499, 'OPN5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1500, 'OPN6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-11-25 15:17:01'),
-(1501, 'OPN7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1502, 'OPN8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-11-25 15:17:01'),
-(1503, 'OPN9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01'),
-(1504, 'OPN10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-11-25 15:17:01');
+(2558, 'EXT2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-12-01 18:03:11'),
+(2559, 'EXT3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2560, 'EXT4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2561, 'EXT5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2562, 'EXT6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2563, 'EXT7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2564, 'EXT8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2565, 'EXT9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2566, 'EXT10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-12-01 18:03:11'),
+(2567, 'EST1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2568, 'EST2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-12-01 18:03:11'),
+(2569, 'EST3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2570, 'EST4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2571, 'EST5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2572, 'EST6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-12-01 18:03:11'),
+(2573, 'EST7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2574, 'EST8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2575, 'EST9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2576, 'EST10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-12-01 18:03:11'),
+(2577, 'AGR1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2578, 'AGR2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2579, 'AGR3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-12-01 18:03:11'),
+(2580, 'AGR4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2581, 'AGR5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2582, 'AGR6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2583, 'AGR7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-12-01 18:03:11'),
+(2584, 'AGR8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2585, 'AGR9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2586, 'AGR10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2587, 'CSN1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2588, 'CSN2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-12-01 18:03:11'),
+(2589, 'CSN3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2590, 'CSN4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2591, 'CSN5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2592, 'CSN6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-12-01 18:03:11'),
+(2593, 'CSN7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2594, 'CSN8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2595, 'CSN9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2596, 'CSN10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2597, 'OPN1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2598, 'OPN2', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-12-01 18:03:11'),
+(2599, 'OPN3', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2600, 'OPN4', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 1, '2024-12-01 18:03:11'),
+(2601, 'OPN5', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2602, 'OPN6', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 2, '2024-12-01 18:03:11'),
+(2603, 'OPN7', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2604, 'OPN8', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 4, '2024-12-01 18:03:11'),
+(2605, 'OPN9', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2606, 'OPN10', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 5, '2024-12-01 18:03:11'),
+(2607, 'EXT1', '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 3, '2024-12-01 18:20:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personalities`
+--
+
+CREATE TABLE `personalities` (
+  `id` int NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `extroversion` float NOT NULL,
+  `neuroticism` float NOT NULL,
+  `agreeableness` float NOT NULL,
+  `conscientiousness` float NOT NULL,
+  `openness` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `personalities`
+--
+
+INSERT INTO `personalities` (`id`, `user_id`, `extroversion`, `neuroticism`, `agreeableness`, `conscientiousness`, `openness`) VALUES
+(1, '8kYIPrLrwwNWAZRG3JagvAMxoZI2', 0.550533, 0.280397, 0.778527, 0.79683, 0.662541);
 
 -- --------------------------------------------------------
 
@@ -163,6 +186,29 @@ INSERT INTO `questions` (`id`, `question_code`, `question_text_en`, `question_te
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recommendations`
+--
+
+CREATE TABLE `recommendations` (
+  `id` int NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `extroversion` json NOT NULL,
+  `neuroticism` json NOT NULL,
+  `agreeableness` json NOT NULL,
+  `conscientiousness` json NOT NULL,
+  `openness` json NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `recommendations`
+--
+
+INSERT INTO `recommendations` (`id`, `user_id`, `extroversion`, `neuroticism`, `agreeableness`, `conscientiousness`, `openness`) VALUES
+(9, '8kYIPrLrwwNWAZRG3JagvAMxoZI2', '{\"skor\": 55, \"judul\": \"Keterbukaan Sosial, Energi, dan Antusiasme\", \"deskripsi\": \"Anda cukup sosial dan antusias, meskipun tidak selalu mencari banyak interaksi.\", \"rekomendasi\": \"Manfaatkan kelompok belajar kecil atau diskusi online. Anda bisa lebih efektif belajar dalam situasi yang tidak terlalu ramai. Cobalah mengajar teman sebaya—ini bisa memperkuat pemahaman Anda dan tetap memberi interaksi sosial.\"}', '{\"skor\": 28, \"judul\": \"Kestabilan Emosi\", \"deskripsi\": \"Skor ini menunjukkan bahwa Anda mungkin lebih sensitif terhadap tekanan atau stres, dan mudah terpengaruh oleh suasana hati.\", \"rekomendasi\": \"Ciptakan rutinitas belajar yang terstruktur untuk mengurangi kecemasan. Gunakan teknik seperti meditasi ringan atau olahraga untuk menjaga keseimbangan emosi. Fokus pada satu tugas dalam satu waktu untuk menghindari perasaan kewalahan.  Prioritaskan istirahat yang cukup.\"}', '{\"skor\": 78, \"judul\": \"Kesepakatan\", \"deskripsi\": \"Anda cenderung kooperatif, peduli, dan mudah berempati terhadap orang lain.\", \"rekomendasi\": \"Pertimbangkan untuk bergabung dalam proyek kelompok yang mendorong kerja sama, seperti kegiatan sosial atau penelitian bersama. Anda juga bisa menjadi mentor bagi teman yang membutuhkan bantuan.\"}', '{\"skor\": 80, \"judul\": \"Ketelitian\", \"deskripsi\": \"Ini menunjukkan bahwa Anda adalah orang yang terorganisir dan bertanggung jawab.\", \"rekomendasi\": \"Manfaatkan keterampilan ini dengan membuat jadwal belajar yang jelas dan daftar tugas harian. Pilih mata pelajaran yang memerlukan fokus dan perhatian terhadap detail, seperti matematika atau pemrograman.\"}', '{\"skor\": 66, \"judul\": \"Keterbukaan Terhadap Pengalaman\", \"deskripsi\": \"Anda cukup terbuka terhadap pengalaman baru dan ide-ide kreatif. Ini berarti Anda mungkin menikmati pembelajaran yang melibatkan eksplorasi dan inovasi.\", \"rekomendasi\": \"Cobalah pelajaran yang melibatkan kreativitas, seperti seni, sastra, atau eksperimen sains. Ikuti klub atau kegiatan yang mendorong pemikiran kritis dan imajinasi, seperti coding atau debat.\"}');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -181,7 +227,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `date_birth`, `gender`, `avatar`, `created_at`) VALUES
-('8kYIPrLrwwNWAZRG3JagvAMxoZI2', 'Nicky', 'nicky@gmail.com', '2024-11-21', 'L', 'https://storage.googleapis.com/study-path-bucket/fotoku.jpg_20241125-221506', '2024-11-25 15:15:16');
+('8kYIPrLrwwNWAZRG3JagvAMxoZI2', 'nickyssss', 'nicky@gmail.com', '2024-11-21', 'L', 'https://storage.googleapis.com/study-path-bucket/StudyPath 2.png', '2024-11-28 13:58:44'),
+('ZO70g9Es06R3PCNgovuiwDEMI2w1', 'nicky', 'asd@gmail.com', '2024-11-21', 'L', 'https://storage.googleapis.com/study-path-bucket/StudyPath 2.png', '2024-11-28 14:57:33');
 
 --
 -- Indexes for dumped tables
@@ -197,11 +244,25 @@ ALTER TABLE `answers`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `personalities`
+--
+ALTER TABLE `personalities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `question_code` (`question_code`);
+
+--
+-- Indexes for table `recommendations`
+--
+ALTER TABLE `recommendations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -217,13 +278,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1505;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4508;
+
+--
+-- AUTO_INCREMENT for table `personalities`
+--
+ALTER TABLE `personalities`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `recommendations`
+--
+ALTER TABLE `recommendations`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -235,6 +308,18 @@ ALTER TABLE `questions`
 ALTER TABLE `answers`
   ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`question_code`) REFERENCES `questions` (`question_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `personalities`
+--
+ALTER TABLE `personalities`
+  ADD CONSTRAINT `personalities_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `recommendations`
+--
+ALTER TABLE `recommendations`
+  ADD CONSTRAINT `recommendations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

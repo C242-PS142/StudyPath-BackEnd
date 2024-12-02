@@ -1,5 +1,5 @@
-// const db = require('../config/cloudSQL');
-const db = require('../config/dbConfig');
+const db = require('../config/cloudSQL');
+// const db = require('../config/dbConfig');
 
 exports.register = function(data ,callback) {
     const sql = 'INSERT INTO users (id, name, email, date_birth, gender, avatar) VALUES (?)';

@@ -11,16 +11,31 @@ exports.me = function (req, res, next) {
       res.status(500).json({ status: "fail", message: "Internal server Error"});
     } else {
       if (result.length === 0) {
-        return res.status(200).json({status: "fail",
+        res.status(200).json({status: "fail",
           message: "Akun tidak ada",
-          data: { isRegister: false, result}})
+          data: { isRegister: false, result: null }})
       } else{
         if (result[0].id === req.user.user_id) {
-          return res.status(200).json({
-            status: "success",
-            message: "Akun ada",
-            data: {isRegister: true, result}
-          });
+          checkAnswer(req.user.user_id, function(error, result3) {
+            if (error) {
+              logError(error);
+              res.status(500).json({status: "fail", message: "Internal Server Error"})
+            } else {
+              if (result3.length === 50) {
+                res.status(200).json({
+                  status: "success",
+                  message: "Login successful",
+                  data: {isRegister: true, isAnswerQuiz: true, result: result[0]}
+                });
+              } else {
+                res.status(200).json({
+                  status: "success",
+                  message: "Login successful",
+                  data: {isRegister: true, isAnswerQuiz: false, result: result[0]}
+                });
+              }
+            }
+          })
         }
       }
     }
@@ -53,7 +68,7 @@ exports.login = async function (req, res, next) {
         if (result.length === 0) {
           return res.status(200).json({status: "success",
             message: "Login successful",
-            data: { isRegister: false, result:[{ uid, name, email, picture }]}})
+            data: { isRegister: false, isAnswerQuiz: false, result:{ id:uid, name, email, avatar: picture }}})
         } else{
           if (result[0].id === uid) {
             checkAnswer(uid, function(error, result3) {
@@ -102,6 +117,10 @@ exports.register = function(req, res, next){
   if (req.file && req.file.cloudStoragePublicUrl) {
       imageUrl = req.file.cloudStoragePublicUrl
   }
+
+  if (req.body.avatar) {
+    imageUrl = req.body.avatar
+  }
   register([id, name, email, date_birth, gender, imageUrl], function(err, result){
     if (err) {
       logError(err)
@@ -117,8 +136,8 @@ exports.register = function(req, res, next){
 }
 
 exports.update = function(req, res, next){
-  const id = req.user.user_id
-  const name = (req.body.name)
+  const id = sanitizeString(req.user.user_id)
+  const name = sanitizeString(req.body.name)
   var imageUrl = ''
 
   if (req.file && req.file.cloudStoragePublicUrl) {
@@ -126,7 +145,7 @@ exports.update = function(req, res, next){
   }
 
   if (req.body.avatar) {
-    imageUrl = req.body.avatar
+    imageUrl = sanitizeString(req.body.avatar)
   }
 
   edit([name, imageUrl, id], function(err, result){

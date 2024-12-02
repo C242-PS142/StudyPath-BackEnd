@@ -7,13 +7,17 @@ exports.predict = function (req, res, next) {
             logError(err);
             res.status(500).json({ status: "fail", message: "Internal Server Error" });
         } else {
-            res.status(200).json({status: "success", message: "Personality fetched successfully", data: { personality: {
-                'Keterbukaan Sosial, Energi, dan Antusiasme': result[0].extraversion,
-                'Kestabilan Emosi': result[0].neuroticism,
-                'Kesepakatan': result[0].agreeableness,
-                'Ketelitian': result[0].conscientiousness,
-                'Keterbukaan terhadap Pengalaman': result[0].openness,
-            } }});
+            if (result.length === 0) {
+                res.status(200).json({status: "success", message: "Personality fetched successfully", data: { personality: {} }});
+            } else {
+                res.status(200).json({status: "success", message: "Personality fetched successfully", data: { personality: {
+                    'Keterbukaan Sosial, Energi, dan Antusiasme': result[0].extroversion,
+                    'Kestabilan Emosi': result[0].neuroticism,
+                    'Kesepakatan': result[0].agreeableness,
+                    'Ketelitian': result[0].conscientiousness,
+                    'Keterbukaan terhadap Pengalaman': result[0].openness,
+                } }});
+            }
         }
     })
 }
