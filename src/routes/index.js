@@ -1,9 +1,9 @@
-const express = require("express"),
-  mainRouter = express(),
-  quiz = require("./quizRoute"),
-  auth = require("./authRoute"),
-  predict = require("./predictRoute"),
-  recom = require("./recomRoute");
+const express = require("express");
+const mainRouter = express();
+const quiz = require("./quizRoute");
+const auth = require("./authRoute");
+const predict = require("./predictRoute");
+const recom = require("./recomRoute");
 
 // Rute untuk kuis dengan prefiks '/api'
 mainRouter.use("/api", quiz);

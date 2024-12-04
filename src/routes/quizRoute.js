@@ -1,7 +1,7 @@
-const express = require("express"),
-  router = express.Router(),
-  { getAll, answers } = require("../controllers/quizController"),
-  authMiddleware = require("../middlewares/authMiddleware");
+const express = require("express");
+const router = express.Router();
+const { getAll, answers } = require("../controllers/quizController");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 // Rute untuk mendapatkan semua kuis
 router.get("/quiz", getAll);

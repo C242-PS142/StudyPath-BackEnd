@@ -1,4 +1,3 @@
-// src/middleware/authValidator.js
 const { body, validationResult } = require("express-validator");
 
 // Validator untuk registrasi

@@ -1,5 +1,5 @@
-const admin = require("../config/firebase"),
-  { register, check, edit, checkAnswer } = require("../models/authModel");
+const admin = require("../config/firebase");
+const { register, check, edit, checkAnswer } = require("../models/authModel");
 const { logError } = require("../utils/loggerUtil");
 const { sanitizeString } = require("../utils/sanitizeUtil");
 

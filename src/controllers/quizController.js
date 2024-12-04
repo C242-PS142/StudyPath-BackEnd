@@ -1,12 +1,12 @@
 const { check } = require("../models/authModel");
 const {
-    getAll,
-    submit,
-    savePredict,
-    saveRecomend,
-  } = require("../models/quizModel"),
-  { predict } = require("../services/mlService"),
-  { generateText } = require("../services/textGenerationService");
+  getAll,
+  submit,
+  savePredict,
+  saveRecomend,
+} = require("../models/quizModel");
+const { predict } = require("../services/mlService");
+const { generateText } = require("../services/textGenerationService");
 const { logError } = require("../utils/loggerUtil");
 
 // Fungsi untuk mengambil semua data kuis dari database

@@ -1,4 +1,3 @@
-// src/services/mlService.js
 const axios = require("axios");
 
 exports.predict = async function (data, callback) {

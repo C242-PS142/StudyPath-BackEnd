@@ -96,7 +96,6 @@ exports.saveRecomend = function (id, data, callback) {
   const agreeableness = JSON.stringify(locker[4]);
   const conscientiousness = JSON.stringify(locker[3]);
   const openness = JSON.stringify(locker[0]);
-  console.log(locker);
   let sql = `
         INSERT INTO recommendations (user_id, extroversion, neuroticism, agreeableness, conscientiousness, openness)
         VALUES (?, ?, ?, ?, ?, ?)
