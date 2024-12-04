@@ -1,10 +1,15 @@
 const ImgUpload = require("../services/gcsService");
-const express = require("express"),
-  router = express.Router(),
-  { login, me, register, update } = require("../controllers/authController"),
-  authMiddleware = require("../middlewares/authMiddleware"),
-  Multer = require("multer"),
-  { registerValidator } = require("../middlewares/authValidator");
+const express = require("express");
+const router = express.Router();
+const {
+  login,
+  me,
+  register,
+  update,
+} = require("../controllers/authController");
+const authMiddleware = require("../middlewares/authMiddleware");
+const Multer = require("multer");
+const { registerValidator } = require("../middlewares/authValidator");
 
 const multer = Multer({
   storage: Multer.MemoryStorage,
@@ -22,7 +27,19 @@ router.get("/me", authMiddleware, me);
 // Rute untuk menangani login pengguna
 router.post("/login", login);
 // Rute untuk menangani register pengguna
-router.post("/register", multer.single("avatar"), ImgUpload.uploadToGcs, registerValidator, register);
+router.post(
+  "/register",
+  multer.single("avatar"),
+  ImgUpload.uploadToGcs,
+  registerValidator,
+  register,
+);
 
-router.put("/edit", multer.single("avatar"), ImgUpload.uploadToGcs, authMiddleware, update);
+router.put(
+  "/edit",
+  multer.single("avatar"),
+  ImgUpload.uploadToGcs,
+  authMiddleware,
+  update,
+);
 module.exports = router;

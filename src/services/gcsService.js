@@ -1,51 +1,49 @@
-    'use strict'
-const {Storage} = require('@google-cloud/storage')
-const fs = require('fs')
-const dateFormat = require('dateformat')
-const path = require('path');
+"use strict";
+const { Storage } = require("@google-cloud/storage");
+const path = require("path");
 
-const pathKey = path.resolve('./gcs-service-account.json')
+const pathKey = path.resolve("./gcs-service-account.json");
 
 // TODO: Sesuaikan konfigurasi Storage
 const gcs = new Storage({
-    projectId: process.env.PROJECT_ID,
-    keyFilename: pathKey
-})
+  projectId: process.env.PROJECT_ID,
+  keyFilename: pathKey,
+});
 
 // TODO: Tambahkan nama bucket yang digunakan
-const bucketName = process.env.GCS_BUCKET_NAME
-const bucket = gcs.bucket(bucketName)
+const bucketName = process.env.GCS_BUCKET_NAME;
+const bucket = gcs.bucket(bucketName);
 
 function getPublicUrl(filename) {
-    return 'https://storage.googleapis.com/' + bucketName + '/' + filename;
+  return "https://storage.googleapis.com/" + bucketName + "/" + filename;
 }
 
-let ImgUpload = {}
+let ImgUpload = {};
 
 ImgUpload.uploadToGcs = (req, res, next) => {
-    if (!req.file) return next()
+  if (!req.file) return next();
 
-    const gcsname = `${req.file.originalname}`
-    const file = bucket.file(gcsname)
+  const gcsname = `${req.file.originalname}`;
+  const file = bucket.file(gcsname);
 
-    const stream = file.createWriteStream({
-        metadata: {
-            contentType: req.file.mimetype
-        }
-    })
+  const stream = file.createWriteStream({
+    metadata: {
+      contentType: req.file.mimetype,
+    },
+  });
 
-    stream.on('error', (err) => {
-        req.file.cloudStorageError = err
-        next(err)
-    })
+  stream.on("error", (err) => {
+    req.file.cloudStorageError = err;
+    next(err);
+  });
 
-    stream.on('finish', () => {
-        req.file.cloudStorageObject = gcsname
-        req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
-        next()
-    })
+  stream.on("finish", () => {
+    req.file.cloudStorageObject = gcsname;
+    req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+    next();
+  });
 
-    stream.end(req.file.buffer)
-}
+  stream.end(req.file.buffer);
+};
 
-module.exports = ImgUpload
+module.exports = ImgUpload;

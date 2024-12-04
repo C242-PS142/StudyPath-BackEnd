@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require("mysql2");
 
 // Konfigurasi koneksi Cloud SQL dengan socket
 const db = mysql.createConnection({
@@ -11,9 +11,9 @@ const db = mysql.createConnection({
 // Membuka koneksi ke database dan menangani error jika koneksi gagal
 db.connect((err) => {
   if (err) {
-    console.error('Error connecting to the database:', err);
+    console.error("Error connecting to the database:", err);
   } else {
-    console.log('Connected to the Cloud SQL database!');
+    console.log("Connected to the Cloud SQL database!");
   }
 });
 

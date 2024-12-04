@@ -1,8 +1,13 @@
-const { getAll, submit, savePredict, saveRecomend } = require("../models/quizModel"),
-{predict} = require('../services/mlService'),
-{generateText} = require('../services/textGenerationService');
+const { check } = require("../models/authModel");
+const {
+  getAll,
+  submit,
+  savePredict,
+  saveRecomend,
+} = require("../models/quizModel");
+const { predict } = require("../services/mlService");
+const { generateText } = require("../services/textGenerationService");
 const { logError } = require("../utils/loggerUtil");
-
 
 // Fungsi untuk mengambil semua data kuis dari database
 exports.getAll = function (req, res, next) {
@@ -10,14 +15,16 @@ exports.getAll = function (req, res, next) {
   getAll(function (err, result) {
     if (err) {
       logError(err);
-      res
-        .status(500)
-        .json({
-          status: "fail",
-          message: "Error while retrieving data from database",
-        });
+      res.status(500).json({
+        status: "fail",
+        message: "Error while retrieving data from database",
+      });
     } else {
-      res.status(200).json({status: "success", message: "Quiz fetched successfully", data: { quiz: result }});
+      res.status(200).json({
+        status: "success",
+        message: "Quiz fetched successfully",
+        data: { quiz: result },
+      });
     }
   });
 };
@@ -38,50 +45,100 @@ exports.answers = function (req, res, next) {
     answer.answer_value,
   ]);
 
-  const ml = values.map(item => item[2]);
+  const ml = values.map((item) => item[2]);
 
-
-  // Memanggil fungsi submit dari quizModel untuk menyimpan jawaban ke database
-  submit(values, function (err, result) {
-    if (err) {
-      logError(err);
-      res.status(500).json({ status: "fail", message: "Internal Server Error" });
+  check(req.user.user_id, function (eror, result4) {
+    if (eror) {
+      res
+        .status(500)
+        .json({ status: "fail", message: "Internal server Error" });
     } else {
-      // Memeriksa apakah jumlah baris yang dipengaruhi sesuai harapan (misalnya 50 jawaban)
-      if (result["serverStatus"] === 2) {
-        predict(ml, function(err1, result1) {
-          if (err1) {
-            logError(err1)
-            res.status(500).json({ status: "fail", message: "Machine Learning Internal Server Error"})
-          } else {
-            savePredict(req.user.user_id, result1.prediction, function(error, resul){
-              if (error) {
-                logError(error)
-                res.status(500).json({ status: "fail", message: "Internal Server Error" })
-              } else {
-                generateText(result1.prediction, function(err2, result2) {
-                  if (err2) {
-                    logError(err2)
-                    res.status(500).json({ status: "fail", message: "Generate Text Internal Server Error" });
-                  } else {
-                    saveRecomend(req.user.user_id, result2, function(errorr, resull) {
-                      if (errorr) {
-                        logError(errorr);
-                        res.status(500).json({ status: "fail", message: "Internal Server Error" })
-                      } else {
-                        res.status(200).json({ status: "success", message: "Prediction from ML server successfully", data: result1})
-                      }
-                    })
-                  }
-                })
-              }
-            })
-          }
-        })
+      if (result4.length === 0) {
+        res.status(200).json({
+          status: "fail",
+          message: "Account does not exist",
+          data: { isRegister: false, result: null },
+        });
       } else {
-        res
-          .status(404)
-          .json({ status: "fail", message: "Failed to answer quiz" });
+        if (result4[0].id === req.user.user_id) {
+          // Memanggil fungsi submit dari quizModel untuk menyimpan jawaban ke database
+          submit(values, function (err, result) {
+            if (err) {
+              logError(err);
+              res
+                .status(500)
+                .json({ status: "fail", message: "Internal Server Error" });
+            } else {
+              // Memeriksa apakah jumlah baris yang dipengaruhi sesuai harapan (misalnya 50 jawaban)
+              if (result["serverStatus"] === 2) {
+                predict(ml, function (err1, result1) {
+                  if (err1) {
+                    logError(err1);
+                    res.status(500).json({
+                      status: "fail",
+                      message: "Machine Learning Internal Server Error",
+                    });
+                  } else {
+                    savePredict(
+                      req.user.user_id,
+                      result1.prediction,
+                      function (error, resul) {
+                        if (error) {
+                          logError(error);
+                          res.status(500).json({
+                            status: "fail",
+                            message: "Internal Server Error",
+                          });
+                        } else {
+                          generateText(
+                            result4[0].date_birth,
+                            result4[0].gender,
+                            result1.prediction,
+                            function (err2, result2) {
+                              if (err2) {
+                                logError(err2);
+                                res.status(500).json({
+                                  status: "fail",
+                                  message:
+                                    "Generate Text Internal Server Error",
+                                });
+                              } else {
+                                saveRecomend(
+                                  req.user.user_id,
+                                  result2,
+                                  function (errorr, resull) {
+                                    if (errorr) {
+                                      logError(errorr);
+                                      res.status(500).json({
+                                        status: "fail",
+                                        message: "Internal Server Error",
+                                      });
+                                    } else {
+                                      res.status(200).json({
+                                        status: "success",
+                                        message:
+                                          "Prediction from ML server successfully",
+                                        data: result1,
+                                      });
+                                    }
+                                  },
+                                );
+                              }
+                            },
+                          );
+                        }
+                      },
+                    );
+                  }
+                });
+              } else {
+                res
+                  .status(404)
+                  .json({ status: "fail", message: "Failed to answer quiz" });
+              }
+            }
+          });
+        }
       }
     }
   });
