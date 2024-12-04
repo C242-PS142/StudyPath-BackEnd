@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 exports.logRequest = function (req) {
   const currentDate = new Date().toISOString();

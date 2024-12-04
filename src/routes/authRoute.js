@@ -22,7 +22,19 @@ router.get("/me", authMiddleware, me);
 // Rute untuk menangani login pengguna
 router.post("/login", login);
 // Rute untuk menangani register pengguna
-router.post("/register", multer.single("avatar"), ImgUpload.uploadToGcs, registerValidator, register);
+router.post(
+  "/register",
+  multer.single("avatar"),
+  ImgUpload.uploadToGcs,
+  registerValidator,
+  register,
+);
 
-router.put("/edit", multer.single("avatar"), ImgUpload.uploadToGcs, authMiddleware, update);
+router.put(
+  "/edit",
+  multer.single("avatar"),
+  ImgUpload.uploadToGcs,
+  authMiddleware,
+  update,
+);
 module.exports = router;
