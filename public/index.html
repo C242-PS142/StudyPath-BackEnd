@@ -16,28 +16,11 @@
   
 </head>
 <body class="font-poppins leading-relaxed antialiased">
-
-    <!-- Navbar -->
-    <!-- <header class="bg-[#43c000] rounded-b-lg text-white py-[10px] pl-[10px] md:pl-16 fixed w-full z-50">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <div class="flex items-center">
-                <img src="images/StudyPath 2 1.png" alt="Logo" class="w-14 h-14 mr-2">
-                <h1 class="text-xl font-bold">StudyPath</h1>
-            </div>
-            <nav class="space-x-6">
-                <a href="#fitur" class="font-semibold hover:underline">Fitur</a>
-                <a href="#model" class="font-semibold hover:underline">Model</a>
-                <a href="#alasan" class="font-semibold hover:underline">Keunggulan</a>
-                <a href="#download" class="bg-[#58cc02] text-white px-4 py-2 rounded-[16px] hover:bg-gray-800 shadow-md">Download</a>
-            </nav>
-        </div>
-    </header> -->
-
       <header class="bg-[#43c000] rounded-b-lg text-white py-[10px] pl-[10px] md:pl-16 fixed w-full z-50">
           <div class="container mx-auto flex justify-between items-center px-4">
             <div class="flex items-center">
-                <img src="images/StudyPath 2 1.png" alt="Logo" class="w-14 h-14 mr-2">
-                <h1 class="text-xl font-bold">StudyPath</h1>
+              <a href=""><img src="images/StudyPath 2 1.png" alt="Logo" class="w-14 h-14 mr-2"></a>
+              <a href=""><h1 class="text-xl font-bold">StudyPath</h1></a>
             </div>
             <!-- Menu Burger (Visible on mobile) -->
             <div class="lg:hidden">
@@ -91,7 +74,7 @@
               </div>
               <!-- Bagian Gambar -->
               <div class="md:w-1/2 flex justify-center mt-6 md:mt-0">
-                  <img src="images/studypath_mockup.png" alt="Foto Tampilan Apk" class="mb-8 w-80 h-auto">
+                  <img src="images/studypath_mockup.png" alt="Foto Tampilan Apk" class="mb-8 w-80 h-auto" loading="lazy">
               </div>
           </div>
       </div>
@@ -323,11 +306,12 @@
     <!-- Download Section -->
     <section id="download" class="bg-[#43c000] rounded-t-lg text-white py-10">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-2xl font-bold mb-4">Unduh Aplikasi Sekarang</h2>
-            <p class="mb-6">Mulailah pengalaman untuk memilih cara belajar yang baik.</p>
+            <h2 class="text-2xl font-bold mb-4">Mulai Perjalanan Belajarmu Sekarang!</h2>
+            <p class="mb-6">Temukan gaya belajar yang paling sesuai dengan kepribadianmu. Bergabunglah bersama ribuan pelajar lainnya yang telah merasakan pengalaman belajar lebih efektif dengan StudyPath.</p>
             <div class="flex justify-center space-x-4">
-                <a href="" class="bg-[#58cc02] text-white px-6 py-3 rounded-[16px] hover:bg-gray-800 shadow-md">Unduh Sekarang</a>
-                <!-- <a href="#" class="bg-[#1cb0f6] text-white px-6 py-3 rounded-[16px] hover:bg-[#44c4ff]">Unduh di Google Play</a> -->
+                <button onclick="downloadFile()" class="bg-[#58cc02] text-white px-6 py-3 rounded-[16px] hover:bg-gray-800 shadow-md">
+                  Unduh Sekarang
+              </button>
             </div>
         </div>
     </section>
