@@ -1,0 +1,946 @@
+openapi: 3.0.1
+info:
+  title: StudyPath API Docs
+  description: API for support mobile app environtment and machine learning model.
+  version: 1.0.0
+servers:
+  - url: https://study-path-app-402921283643.asia-southeast2.run.app
+    description: Production server
+  - url: http://localhost:3000
+    description: Local server
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user account
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: 8kYIPrLrwwNWAZRG3JagvAMxoZI2
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: johndoe@gmail.com
+                date_birth:
+                  type: string
+                  format: date
+                  example: 2024-11-21
+                gender:
+                  type: string
+                  example: L
+                avatar:
+                  type: string
+                  format: binary
+                  description: The user's avatar image file
+                  example: "upload.jpg"
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: User registered successfully
+                  data:
+                    type: string
+                    example: 
+                      user :
+                        id: 8kYIPrLrwwNWAZRG3JagvAMxoZI2
+                        name: John Doe
+                        email: johndoe@gmail.com
+                        date_birth: 2024-11-21
+                        gender: L
+                        avatar: upload.jpg
+
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+        
+        '400':
+          description: User failed to register!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: User failed to register
+
+
+  /auth/login:
+    post:
+      summary: Authenticate user
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Login successful
+                  data:
+                    type: object
+                    properties:
+                      isRegister:
+                        type: boolean
+                        example: true
+                      isAnswerQuiz:
+                        type: boolean
+                        example: true
+                      result:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "8kYIPrLrwwNWAZRG3JagvAMxoZI2"
+                          name:
+                            type: string
+                            example: "John Doe"
+                          email:
+                            type: string
+                            example: "johndoe@gmail.com"
+                          date_birth:
+                            type: string
+                            format: date-time
+                            example: "2002-09-03T17:00:00.000Z"
+                          gender:
+                            type: string
+                            example: "L"
+                          avatar:
+                            type: string
+                            example: "https://storage.googleapis.com/study-path-bucket/20241206_2159461626960954958007969.jpg"
+                          created_at:
+                            type: string
+                            format: date-time
+                            example: "2024-12-06T07:55:19.000Z"    
+                      
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+        
+        '401':
+          description: Unauthorized due to invalid or missing Bearer token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Unauthorized: Invalid Access Token
+
+        '400':
+          description: No Access Token provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: No Access Token provided
+
+  /auth/edit:
+    put:
+      summary: Update user account information
+      tags:
+        - Authentication
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                avatar:
+                  type: string
+                  format: binary
+                  description: The user's avatar image file
+                  example: "upload.jpg"
+      responses:
+        '201':
+          description: User account updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: User successfully edited account
+                  data:
+                    type: string
+                    example: 
+                      user :
+                        id: 8kYIPrLrwwNWAZRG3JagvAMxoZI2
+                        name: John Doe
+                        avatar: upload.jpg
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+        
+        '400':
+          description: User failed to edit account!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: User failed to edit account
+        
+        '401':
+          description: Unauthorized due to invalid or missing Bearer token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Unauthorized: Invalid Access Token
+
+  /auth/me:
+    get:
+      summary: Get authenticated user data
+      tags:
+        - Authentication
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User data fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Login successful
+                  data:
+                    type: object
+                    properties:
+                      isRegister:
+                        type: boolean
+                        example: true
+                      isAnswerQuiz:
+                        type: boolean
+                        example: true
+                      result:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 8kYIPrLrwwNWAZRG3JagvAMxoZI2
+                          name:
+                            type: string
+                            example: nickyssss
+                          email:
+                            type: string
+                            example: j.baptista57@yahoo.com
+                          date_birth:
+                            type: string
+                            format: date-time
+                            example: 2002-09-03T17:00:00.000Z
+                          gender:
+                            type: string
+                            example: L
+                          avatar:
+                            type: string
+                            example: https://storage.googleapis.com/study-path-bucket/StudyPath 2.png
+                          created_at:
+                            type: string
+                            format: date-time
+                            example: 2024-12-06T07:55:19.000Z
+
+        '401':
+          description: Unauthorized due to invalid or missing Bearer token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Unauthorized: Invalid Access Token
+        
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+
+  /api/quiz:
+    get:
+      summary: Retrieve all available quizzes
+      tags:
+        - Quiz
+      responses:
+        '200':
+          description: Quizzes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Quiz fetched successfully
+                  data:
+                    type: object
+                    properties:
+                      quiz:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            question_code:
+                              type: string
+                              example: EXT1
+                            question_text_en:
+                              type: string
+                              example: "I am the life of the party."
+                            question_text_id:
+                              type: string
+                              example: "Saya adalah pusat perhatian di kelas."
+                          example:
+                            - id: 1
+                              question_code: "EXT1"
+                              question_text_en: "I am the life of the party."
+                              question_text_id: "Saya adalah pusat perhatian di kelas."
+                            - id: 2
+                              question_code: "EXT2"
+                              question_text_en: "I don't talk a lot."
+                              question_text_id: "Saya tidak banyak berbicara di kelas."
+                            - id: 3
+                              question_code: "EXT3"
+                              question_text_en: "I feel comfortable around people."
+                              question_text_id: "Saya merasa nyaman berada di sekitar teman-teman di sekolah."
+                            - id: 4
+                              question_code: "EXT4"
+                              question_text_en: "I keep in the background."
+                              question_text_id: "Saya cenderung berada di latar belakang saat di sekolah."
+                            - id: 5
+                              question_code: "EXT5"
+                              question_text_en: "I start conversations."
+                              question_text_id: "Saya memulai percakapan dengan teman-teman di sekolah."
+                            - id: 6
+                              question_code: "EXT6"
+                              question_text_en: "I have little to say."
+                              question_text_id: "Saya jarang berbicara di sekolah."
+                            - id: 7
+                              question_code: "EXT7"
+                              question_text_en: "I talk to a lot of different people at parties."
+                              question_text_id: "Saya berbicara dengan banyak orang yang berbeda di sekolah."
+                            - id: 8
+                              question_code: "EXT8"
+                              question_text_en: "I don't like to draw attention to myself."
+                              question_text_id: "Saya tidak suka menarik perhatian di sekolah."
+                            - id: 9
+                              question_code: "EXT9"
+                              question_text_en: "I don't mind being the center of attention."
+                              question_text_id: "Saya tidak keberatan menjadi pusat perhatian di kelas."
+                            - id: 10
+                              question_code: "EXT10"
+                              question_text_en: "I am quiet around strangers."
+                              question_text_id: "Saya pendiam di sekitar orang yang tidak saya kenal di sekolah."
+                            - id: 11
+                              question_code: "EST1"
+                              question_text_en: "I get stressed out easily."
+                              question_text_id: "Saya mudah stres saat ujian atau tugas di sekolah."
+                            - id: 12
+                              question_code: "EST2"
+                              question_text_en: "I am relaxed most of the time."
+                              question_text_id: "Saya merasa santai saat belajar di sekolah."
+                            - id: 13
+                              question_code: "EST3"
+                              question_text_en: "I worry about things."
+                              question_text_id: "Saya sering khawatir tentang nilai atau tugas di sekolah."
+                            - id: 14
+                              question_code: "EST4"
+                              question_text_en: "I seldom feel blue."
+                              question_text_id: "Saya jarang merasa sedih saat di sekolah."
+                            - id: 15
+                              question_code: "EST5"
+                              question_text_en: "I am easily disturbed."
+                              question_text_id: "Saya mudah terganggu saat belajar di kelas."
+                            - id: 16
+                              question_code: "EST6"
+                              question_text_en: "I get upset easily."
+                              question_text_id: "Saya mudah kesal ketika ada masalah di sekolah."
+                            - id: 17
+                              question_code: "EST7"
+                              question_text_en: "I change my mood a lot."
+                              question_text_id: "Suasana hati saya sering berubah-ubah saat belajar."
+                            - id: 18
+                              question_code: "EST8"
+                              question_text_en: "I have frequent mood swings."
+                              question_text_id: "Saya sering mengalami perubahan suasana hati di sekolah."
+                            - id: 19
+                              question_code: "EST9"
+                              question_text_en: "I get irritated easily."
+                              question_text_id: "Saya mudah merasa kesal dengan teman-teman di sekolah."
+                            - id: 20
+                              question_code: "EST10"
+                              question_text_en: "I often feel blue."
+                              question_text_id: "Saya sering merasa sedih karena tugas atau ujian."
+                            - id: 21
+                              question_code: "AGR1"
+                              question_text_en: "I feel little concern for others."
+                              question_text_id: "Saya kurang peduli dengan teman-teman di sekolah."
+                            - id: 22
+                              question_code: "AGR2"
+                              question_text_en: "I am interested in people."
+                              question_text_id: "Saya tertarik dengan teman-teman di sekolah."
+                            - id: 23
+                              question_code: "AGR3"
+                              question_text_en: "I insult people."
+                              question_text_id: "Saya terkadang tidak sopan kepada teman-teman di sekolah."
+                            - id: 24
+                              question_code: "AGR4"
+                              question_text_en: "I sympathize with others' feelings."
+                              question_text_id: "Saya merasa empati dengan perasaan teman-teman di sekolah."
+                            - id: 25
+                              question_code: "AGR5"
+                              question_text_en: "I am not interested in other people's problems."
+                              question_text_id: "Saya tidak terlalu tertarik dengan masalah teman di sekolah."
+                            - id: 26
+                              question_code: "AGR6"
+                              question_text_en: "I have a soft heart."
+                              question_text_id: "Saya peduli dengan perasaan teman-teman di sekolah."
+                            - id: 27
+                              question_code: "AGR7"
+                              question_text_en: "I am not really interested in others."
+                              question_text_id: "Saya tidak terlalu tertarik dengan teman-teman di sekolah."
+                            - id: 28
+                              question_code: "AGR8"
+                              question_text_en: "I take time out for others."
+                              question_text_id: "Saya meluangkan waktu untuk membantu teman di sekolah."
+                            - id: 29
+                              question_code: "AGR9"
+                              question_text_en: "I feel others' emotions."
+                              question_text_id: "Saya bisa merasakan perasaan teman-teman di sekolah."
+                            - id: 30
+                              question_code: "AGR10"
+                              question_text_en: "I make people feel at ease."
+                              question_text_id: "Saya membuat teman-teman merasa nyaman di kelas."
+                            - id: 31
+                              question_code: "CSN1"
+                              question_text_en: "I am always prepared."
+                              question_text_id: "Saya selalu siap dengan pelajaran di sekolah."
+                            - id: 32
+                              question_code: "CSN2"
+                              question_text_en: "I leave my belongings around."
+                              question_text_id: "Saya sering meninggalkan barang-barang di sekolah."
+                            - id: 33
+                              question_code: "CSN3"
+                              question_text_en: "I pay attention to details."
+                              question_text_id: "Saya memperhatikan detail dalam tugas dan ujian."
+                            - id: 34
+                              question_code: "CSN4"
+                              question_text_en: "I make a mess of things."
+                              question_text_id: "Saya terkadang membuat kekacauan di sekolah."
+                            - id: 35
+                              question_code: "CSN5"
+                              question_text_en: "I get chores done right away."
+                              question_text_id: "Saya segera menyelesaikan tugas sekolah."
+                            - id: 36
+                              question_code: "CSN6"
+                              question_text_en: "I often forget to put things back in their proper place."
+                              question_text_id: "Saya sering lupa menaruh barang dengan rapi di sekolah."
+                            - id: 37
+                              question_code: "CSN7"
+                              question_text_en: "I like order."
+                              question_text_id: "Saya suka keteraturan di kelas."
+                            - id: 38
+                              question_code: "CSN8"
+                              question_text_en: "I shirk my duties."
+                              question_text_id: "Saya kadang mengabaikan tugas sekolah."
+                            - id: 39
+                              question_code: "CSN9"
+                              question_text_en: "I follow a schedule."
+                              question_text_id: "Saya mengikuti jadwal pelajaran dengan teratur."
+                            - id: 40
+                              question_code: "CSN10"
+                              question_text_en: "I am exacting in my work."
+                              question_text_id: "Saya sangat teliti dalam mengerjakan tugas di sekolah."
+                            - id: 41
+                              question_code: "OPN1"
+                              question_text_en: "I have a rich vocabulary."
+                              question_text_id: "Saya memiliki kosa kata yang luas di sekolah."
+                            - id: 42
+                              question_code: "OPN2"
+                              question_text_en: "I have difficulty understanding abstract ideas."
+                              question_text_id: "Saya kesulitan memahami konsep-konsep abstrak di sekolah."
+                            - id: 43
+                              question_code: "OPN3"
+                              question_text_en: "I have a vivid imagination."
+                              question_text_id: "Saya memiliki imajinasi yang kreatif dalam belajar."
+                            - id: 44
+                              question_code: "OPN4"
+                              question_text_en: "I am not interested in abstract ideas."
+                              question_text_id: "Saya tidak tertarik pada ide-ide abstrak yang diajarkan di sekolah."
+                            - id: 45
+                              question_code: "OPN5"
+                              question_text_en: "I have excellent ideas."
+                              question_text_id: "Saya sering memiliki ide-ide bagus untuk tugas sekolah."
+                            - id: 46
+                              question_code: "OPN6"
+                              question_text_en: "I do not have a good imagination."
+                              question_text_id: "Saya tidak memiliki imajinasi yang kuat di sekolah."
+                            - id: 47
+                              question_code: "OPN7"
+                              question_text_en: "I am quick to understand things."
+                              question_text_id: "Saya cepat memahami pelajaran di sekolah."
+                            - id: 48
+                              question_code: "OPN8"
+                              question_text_en: "I use difficult words."
+                              question_text_id: "Saya sering menggunakan kata-kata sulit saat berbicara di sekolah."
+                            - id: 49
+                              question_code: "OPN9"
+                              question_text_en: "I spend time reflecting on things."
+                              question_text_id: "Saya sering merenung tentang pelajaran di sekolah."
+                            - id: 50
+                              question_code: OPN10
+                              question_text_en: "I am full of ideas."
+                              question_text_id: "Saya sering penuh dengan ide untuk tugas sekolah."
+                  
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+
+    post:
+      summary: Submit quiz answers for personality prediction
+      tags:
+        - Quiz
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                    type: object
+                    properties:
+                      question_code:
+                        type: string
+                        example: "EXT1"
+                      answer_value:
+                        type: integer
+                        example: 4
+                    example:
+                      - question_code: "EXT1"
+                        answer_value: 4
+                      - question_code: "EXT2"
+                        answer_value: 4
+                      - question_code: "EXT3"
+                        answer_value: 4
+      responses:
+        '200':
+          description: Prediction from ML server successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Prediction from ML server successfully
+                  data:
+                    type: object
+                    properties:
+                      prediction:
+                        type: object
+                        properties:
+                          Kesepakatan:
+                            type: number
+                            example: 0.7757217884063721
+                          Kestabilan Emosi:
+                            type: number
+                            example: 0.28837090730667114
+                          Ketelitian:
+                            type: number
+                            example: 0.8003525733947754
+                          Keterbukaan Sosial, Energi, dan Antusiasme:
+                            type: number
+                            example: 0.5924340486526489
+                          Keterbukaan terhadap Pengalaman:
+                            type: number
+                            example: 0.662539005279541
+        '400':
+          description: Invalid input or missing answers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Invalid input or missing answers
+        '401':
+          description: Unauthorized due to invalid or missing Bearer token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Unauthorized: Invalid Access Token
+        
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+
+  /api/predict:
+    get:
+      summary: Retrieve personality prediction results
+      tags:
+        - Prediction
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Personality fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Personality fetched successfully
+                  data:
+                    type: object
+                    properties:
+                      personality:
+                        type: object
+                        properties:
+                          Keterbukaan Sosial, Energi, dan Antusiasme:
+                            type: number
+                            example: 0.599198
+                          Kestabilan Emosi:
+                            type: number
+                            example: 0.263114
+                          Kesepakatan:
+                            type: number
+                            example: 0.93759
+                          Ketelitian:
+                            type: number
+                            example: 0.891508
+                          Keterbukaan terhadap Pengalaman:
+                            type: number
+                            example: 0.917976
+        
+        '401':
+          description: Unauthorized due to invalid or missing Bearer token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Unauthorized: Invalid Access Token
+        
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+
+  /api/recommendation:
+    get:
+      summary: Retrieve personalized learning recommendations
+      tags:
+        - Recommendation
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Recommendation fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Recommendation fetched successfully
+                  data:
+                    type: object
+                    properties:
+                      recommendation:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 71
+                          user_id:
+                            type: string
+                            example: 8kYIPrLrwwNWAZRG3JagvAMxoZI2
+                          extroversion:
+                            type: object
+                            properties:
+                              skor:
+                                type: integer
+                                example: 60
+                              judul:
+                                type: string
+                                example: Keterbukaan Sosial, Energi, dan Antusiasme
+                              deskripsi:
+                                type: string
+                                example: Anda cukup sosial dan antusias, namun mungkin lebih nyaman dalam interaksi yang terukur.
+                              rekomendasi:
+                                type: string
+                                example: Manfaatkan kelompok belajar kecil untuk diskusi dan kolaborasi, namun jangan memaksakan diri untuk selalu berpartisipasi dalam aktivitas kelompok yang besar dan ramai. Temukan keseimbangan antara belajar mandiri dan belajar kelompok.
+                          neuroticism:
+                            type: object
+                            properties:
+                              skor:
+                                type: integer
+                                example: 26
+                              judul:
+                                type: string
+                                example: Kestabilan Emosi
+                              deskripsi:
+                                type: string
+                                example: Skor ini menunjukkan bahwa Anda mungkin lebih sensitif terhadap tekanan atau stres, dan mudah terpengaruh oleh suasana hati. Manajemen stres sangat penting untuk kesuksesan belajar Anda.
+                              rekomendasi:
+                                type: string
+                                example: Buatlah jadwal belajar yang realistis dan jangan terlalu membebani diri. Prioritaskan tugas-tugas dan istirahatlah secara teratur. Praktikkan teknik manajemen stres seperti meditasi, yoga, atau olahraga teratur. Cari dukungan dari teman atau keluarga jika dibutuhkan.
+                          agreeableness:
+                            type: object
+                            properties:
+                              skor:
+                                type: integer
+                                example: 94
+                              judul:
+                                type: string
+                                example: Kesepakatan
+                              deskripsi:
+                                type: string
+                                example: Anda sangat kooperatif, peduli, dan mudah berempati terhadap orang lain.
+                              rekomendasi:
+                                type: string
+                                example: Manfaatkan kemampuan ini dengan berpartisipasi dalam proyek kelompok atau kegiatan sukarela. Anda bisa menjadi mentor bagi teman sebaya yang membutuhkan bantuan. Pertimbangkan bidang studi yang berfokus pada membantu orang lain, seperti kedokteran atau pekerjaan sosial.
+                          conscientiousness:
+                            type: object
+                            properties:
+                              skor:
+                                type: integer
+                                example: 89
+                              judul:
+                                type: string
+                                example: Ketelitian
+                              deskripsi:
+                                type: string
+                                example: Anda sangat terorganisir dan bertanggung jawab. Ini adalah aset besar dalam proses belajar.
+                              rekomendasi:
+                                type: string
+                                example: Manfaatkan kekuatan Anda dengan membuat rencana belajar yang detail dan terstruktur. Buat jadwal yang spesifik dan patuhi dengan ketat. Pertimbangkan untuk menggunakan metode belajar yang menekankan pada detail dan akurasi.
+                          openness:
+                            type: object
+                            properties:
+                              skor:
+                                type: integer
+                                example: 92
+                              judul:
+                                type: string
+                                example: Keterbukaan Terhadap Pengalaman
+                              deskripsi:
+                                type: string
+                                example: Anda sangat terbuka terhadap pengalaman baru dan ide-ide kreatif. Ini berarti Anda akan sangat menikmati pembelajaran yang menantang, inovatif, dan tidak konvensional.
+                              rekomendasi:
+                                type: string
+                                example: Eksplorasi berbagai bidang studi, jangan takut untuk mencoba hal-hal baru. Carilah pembelajaran yang berbasis proyek, yang memungkinkan Anda untuk bereksperimen dan berinovasi. Pertimbangkan bidang studi interdisipliner yang menggabungkan beberapa minat Anda.
+        '401':
+          description: Unauthorized due to invalid or missing Bearer token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Unauthorized: Invalid Access Token
+        
+        '500':
+          description: Internal Server Error!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Internal Server Error
+
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

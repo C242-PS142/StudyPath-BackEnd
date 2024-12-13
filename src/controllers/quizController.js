@@ -134,7 +134,7 @@ exports.answers = function (req, res, next) {
               } else {
                 res
                   .status(404)
-                  .json({ status: "fail", message: "Failed to answer quiz" });
+                  .json({ status: "fail", message: "Invalid input or missing answers" });
               }
             }
           });

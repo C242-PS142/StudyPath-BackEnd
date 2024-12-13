@@ -162,13 +162,13 @@ exports.register = function (req, res, next) {
         if (result["affectedRows"] === 1) {
           res.status(201).json({
             status: "success",
-            message: "Berhasil membuat akun",
+            message: "User registered successfully",
             data: { user: { ...req.body, avatar: imageUrl } },
           });
         } else {
           res
             .status(400)
-            .json({ status: "fail", message: "Gagal membuat akun" });
+            .json({ status: "fail", message: "User failed to register" });
         }
       }
     },
@@ -198,11 +198,11 @@ exports.update = function (req, res, next) {
       if (result["affectedRows"] === 1) {
         res.status(201).json({
           status: "success",
-          message: "Berhasil mengedit akun",
+          message: "User successfully edited account",
           data: { user: { id, name, avatar: imageUrl } },
         });
       } else {
-        res.status(400).json({ status: "fail", message: "Gagal membuat akun" });
+        res.status(400).json({ status: "fail", message: "User failed to edit account" });
       }
     }
   });
