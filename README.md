@@ -6,7 +6,7 @@ This repository for Bangkit Capstone Project
 
 - [Node.js Backend Documentation](#nodejs-backend-documentation)
   - [Prerequisites](#-prerequisites)
-  - [Cara Menggunakan](#🚀-cara-menggunakan)
+  - [Cara Menggunakan](#-cara-menggunakan)
     - [Clone Repository](#1-clone-repository)
     - [Masuk ke Direktori Proyek](#2-masuk-ke-direktori-proyek)
     - [Install Dependencies](#3-install-dependencies)
@@ -14,9 +14,9 @@ This repository for Bangkit Capstone Project
     - [Import Database](#5-import-database)
     - [Menjalankan Server](#6-menjalankan-server)
     - [Akses Aplikasi](#7-akses-aplikasi)
-  - [Struktur Proyek](#📂-struktur-proyek)
-  - [Scripts yang Tersedia](#✨-scripts-yang-tersedia)
-  - [Troubleshooting](#️🛠️-troubleshooting)
+  - [Struktur Proyek](#-struktur-proyek)
+  - [Scripts yang Tersedia](#-scripts-yang-tersedia)
+  - [Troubleshooting](#️-troubleshooting)
 - [API Documentation](#api-documentation)
 
 # Node.js Backend Documentation
