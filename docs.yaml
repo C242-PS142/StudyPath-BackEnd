@@ -11,7 +11,7 @@ servers:
 paths:
   /auth/register:
     post:
-      summary: For user register
+      summary: Register a new user account
       tags:
         - Authentication
       requestBody:
@@ -44,7 +44,7 @@ paths:
                   example: "upload.jpg"
       responses:
         '201':
-          description: User registered successfully!
+          description: User registered successfully
           content:
             application/json:
               schema:
@@ -98,7 +98,7 @@ paths:
 
   /auth/login:
     post:
-      summary: For user login
+      summary: Authenticate user
       tags:
         - Authentication
       requestBody:
@@ -204,7 +204,7 @@ paths:
 
   /auth/edit:
     put:
-      summary: For user edit account
+      summary: Update user account information
       tags:
         - Authentication
       security:
@@ -226,7 +226,7 @@ paths:
                   example: "upload.jpg"
       responses:
         '201':
-          description: User successfully edited account!
+          description: User account updated successfully
           content:
             application/json:
               schema:
@@ -374,12 +374,12 @@ paths:
 
   /api/quiz:
     get:
-      summary: For get all quiz
+      summary: Retrieve all available quizzes
       tags:
         - Quiz
       responses:
         '200':
-          description: History predictions retrieved successfully!
+          description: Quizzes retrieved successfully
           content:
             application/json:
               schema:
